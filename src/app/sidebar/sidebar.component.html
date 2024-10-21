@@ -1,0 +1,36 @@
+<div class="sidebar">
+  
+  <div class="options-box" style="border: 1px solid #ccc; padding: 10px;">
+    <button (click)="onMyInfoClick()" class="btn btn-primary" style="margin-bottom: 10px;">My Info</button>
+  <div *ngIf="activeOption === 'PersonalTimesheet'" style="margin-top: 10px;">
+    <h6>Personal Timesheet Options</h6>
+    <ul>
+      <li>Sub Option X</li>
+      <li>Sub Option Y</li>
+      <li>Sub Option Z</li>
+    </ul>
+  </div>
+    <ul>
+      <li *ngFor="let option of options" (click)="toggleSubOptions(option)">{{ option }}</li>
+    </ul>
+
+    <!-- Sub-options box cho ADMIN -->
+    <div *ngIf="activeOption === 'ADMIN'" style="margin-top: 10px;">
+      <h6>Admin Options</h6>
+      <ul>
+        <li>Sub Option 1</li>
+        <li>Sub Option 2</li>
+        <li>Sub Option 3</li>
+      </ul>
+    </div>
+
+    <!-- Sub-options box cho Management -->
+    <div *ngIf="activeOption === 'Management'" style="margin-top: 10px;">
+      <h6>Management Options</h6>
+      <ul>
+        <li>Sub Option A</li>
+        <li>Sub Option B</li>
+      </ul>
+    </div>
+  </div>
+</div>
