@@ -1,4 +1,12 @@
 <div class="main-content" style="width: 80%">
-    <p>Main Content</p>
-  </div>
-  
+  <ng-container [ngSwitch]="currentRoute">
+    <p *ngSwitchCase="'my-info'">Nội dung cho My Information</p>
+    <p *ngSwitchCase="'my-timesheet'">Nội dung cho My Timesheet</p>
+    <p *ngSwitchCase="'my-request'">Nội dung cho My Request</p>
+    <p *ngSwitchCase="'users'">Nội dung cho Users</p>
+    <p *ngSwitchCase="'role'">Nội dung cho Role</p>
+    <p *ngSwitchCase="'project'">Nội dung cho Project</p>
+    <p *ngSwitchCase="'request'">Nội dung cho Request</p>
+    <p *ngSwitchDefault>Vui lòng chọn một mục trong menu bên trái.</p>
+  </ng-container>
+</div>

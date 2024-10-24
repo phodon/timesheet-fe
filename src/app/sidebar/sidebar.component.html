@@ -1,36 +1,44 @@
-<div class="sidebar">
-  
-  <div class="options-box" style="border: 1px solid #ccc; padding: 10px;">
-    <button (click)="onMyInfoClick()" class="btn btn-primary" style="margin-bottom: 10px;">My Info</button>
-  <div *ngIf="activeOption === 'PersonalTimesheet'" style="margin-top: 10px;">
-    <h6>Personal Timesheet Options</h6>
+<nz-collapse>
+  <!-- My Information (No sub-options) -->
+  <nz-collapse-panel
+    nzHeader="My Information"
+    [nzShowArrow]="false"
+  >
     <ul>
-      <li>Sub Option X</li>
-      <li>Sub Option Y</li>
-      <li>Sub Option Z</li>
+      <li><a routerLink="/my-info">My Information</a></li>
     </ul>
-  </div>
+  </nz-collapse-panel>
+
+  <!-- Personal Timesheet (With sub-options) -->
+  <nz-collapse-panel
+    nzHeader="Personal Timesheet"
+    [nzShowArrow]="true"
+  >
     <ul>
-      <li *ngFor="let option of options" (click)="toggleSubOptions(option)">{{ option }}</li>
+      <li><a routerLink="/my-timesheet">My Timesheet</a></li>
+      <li><a routerLink="/my-request">My Request</a></li>
     </ul>
+  </nz-collapse-panel>
 
-    <!-- Sub-options box cho ADMIN -->
-    <div *ngIf="activeOption === 'ADMIN'" style="margin-top: 10px;">
-      <h6>Admin Options</h6>
-      <ul>
-        <li>Sub Option 1</li>
-        <li>Sub Option 2</li>
-        <li>Sub Option 3</li>
-      </ul>
-    </div>
+  <!-- Admin (With sub-options) -->
+  <nz-collapse-panel
+    nzHeader="Admin"
+    [nzShowArrow]="true"
+  >
+    <ul>
+      <li><a routerLink="/users">Users</a></li>
+      <li><a routerLink="/role">Role</a></li>
+    </ul>
+  </nz-collapse-panel>
 
-    <!-- Sub-options box cho Management -->
-    <div *ngIf="activeOption === 'Management'" style="margin-top: 10px;">
-      <h6>Management Options</h6>
-      <ul>
-        <li>Sub Option A</li>
-        <li>Sub Option B</li>
-      </ul>
-    </div>
-  </div>
-</div>
+  <!-- Management (With sub-options) -->
+  <nz-collapse-panel
+    nzHeader="Management"
+    [nzShowArrow]="true"
+  >
+    <ul>
+      <li><a routerLink="/project">Project</a></li>
+      <li><a routerLink="/request">Request</a></li>
+    </ul>
+  </nz-collapse-panel>
+</nz-collapse>

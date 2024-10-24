@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { jwtDecode } from 'jwt-decode'; 
-
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { CommonModule } from '@angular/common'; 
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NzCollapseModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
