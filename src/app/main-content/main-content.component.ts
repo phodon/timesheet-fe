@@ -1,21 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MyInfoComponent } from '../my-info/my-info.component';
+import { MyTimesheetComponent } from '../my-timesheet/my-timesheet.component';
+import { MyRequestComponent } from '../my-request/my-request.component';
+import { UsersComponent } from '../users/users.component';
+import { RoleComponent } from '../role/role.component';
+import { ProjectComponent } from '../project/project.component';
+import { RequestComponent } from '../request/request.component';
 
 @Component({
   selector: 'app-main-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule, 
+    MyInfoComponent,
+    MyTimesheetComponent,
+    MyRequestComponent,
+    UsersComponent,
+    RoleComponent,
+    ProjectComponent,
+    RequestComponent
+  ],
   templateUrl: './main-content.component.html',
   styleUrls: ['./main-content.component.css']
 })
-export class MainContentComponent {
+export class MainContentComponent implements OnInit {
   currentRoute: string = '';
 
-  constructor(private route: ActivatedRoute) {
-    this.route.url.subscribe(url => {
-      this.currentRoute = url.join('');
-      console.log('Current Route:', this.currentRoute); // Thêm log để kiểm tra
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.currentRoute = this.router.url;
     });
   }
 }

@@ -1,0 +1,13 @@
+<!-- src/app/components/my-info/my-info.component.html -->
+<div *ngIf="userInfo">
+    <h2>Thông tin người dùng</h2>
+    <p><strong>Họ và tên:</strong> {{ userInfo.FullName }}</p>
+    <p><strong>Tuổi:</strong> {{ userInfo.Age }}</p>
+    <p><strong>Email:</strong> {{ userInfo.Email }}</p>
+    <p><strong>Địa chỉ:</strong> {{ userInfo.Address }}</p>
+    <!-- Thêm các trường khác nếu cần -->
+  </div>
+  <div *ngIf="!userInfo">
+    <p>Đang tải thông tin người dùng...</p>
+  </div>
+  

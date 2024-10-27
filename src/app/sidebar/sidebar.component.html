@@ -1,44 +1,32 @@
 <nz-collapse>
   <!-- My Information (No sub-options) -->
-  <nz-collapse-panel
-    nzHeader="My Information"
-    [nzShowArrow]="false"
-  >
+  <nz-collapse-panel nzHeader="My Information" [nzShowArrow]="false">
     <ul>
-      <li><a routerLink="/my-info">My Information</a></li>
+      <li><a routerLink="/home/my-info">My Information</a></li>
     </ul>
   </nz-collapse-panel>
 
   <!-- Personal Timesheet (With sub-options) -->
-  <nz-collapse-panel
-    nzHeader="Personal Timesheet"
-    [nzShowArrow]="true"
-  >
+  <nz-collapse-panel nzHeader="Personal Timesheet" [nzShowArrow]="true">
     <ul>
-      <li><a routerLink="/my-timesheet">My Timesheet</a></li>
-      <li><a routerLink="/my-request">My Request</a></li>
+      <li><a routerLink="/home/my-timesheet">My Timesheet</a></li>
+      <li><a routerLink="/home/my-request">My Request</a></li>
     </ul>
   </nz-collapse-panel>
 
   <!-- Admin (With sub-options) -->
-  <nz-collapse-panel
-    nzHeader="Admin"
-    [nzShowArrow]="true"
-  >
+  <nz-collapse-panel nzHeader="Admin" [nzShowArrow]="true">
     <ul>
-      <li><a routerLink="/users">Users</a></li>
-      <li><a routerLink="/role">Role</a></li>
+      <li><a routerLink="/home/users">Users</a></li>
+      <li><a routerLink="/home/role">Role</a></li>
     </ul>
   </nz-collapse-panel>
 
   <!-- Management (With sub-options) -->
-  <nz-collapse-panel
-    nzHeader="Management"
-    [nzShowArrow]="true"
-  >
+  <nz-collapse-panel nzHeader="Management" [nzShowArrow]="true">
     <ul>
-      <li><a routerLink="/project">Project</a></li>
-      <li><a routerLink="/request">Request</a></li>
+      <li><a routerLink="/home/project">Project</a></li>
+      <li><a routerLink="/home/request">Request</a></li>
     </ul>
   </nz-collapse-panel>
 </nz-collapse>
