@@ -1,1 +1,40 @@
-<p>users works!</p>
+<div>
+    <h2>Danh sách người dùng</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Họ và Tên</th>
+          <th>Tuổi</th>
+          <th>Chức vụ</th>
+          <th>Email</th>
+          <th>Ngân hàng</th>
+          <th>Số tài khoản ngân hàng</th>
+          <th>Địa chỉ</th>
+          <th>CMND</th>
+          <th>Lương</th>
+          <th>Giới tính</th>
+          <th>Số điện thoại</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.FullName }}</td>
+          <td>{{ user.Age }}</td>
+          <td>{{ user.Positon }}</td>
+          <td>{{ user.Email }}</td>
+          <td>{{ user.Bank }}</td>
+          <td>{{ user.BankAccount }}</td>
+          <td>{{ user.Address }}</td>
+          <td>{{ user.Indentify }}</td>
+          <td>{{ user.Salary }}</td>
+          <td>{{ user.Sex }}</td>
+          <td>{{ user.PhoneNumber }}</td>
+          <td>{{ user.Status ? 'Hoạt động' : 'Ngừng hoạt động' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
