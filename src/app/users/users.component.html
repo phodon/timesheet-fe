@@ -1,40 +1,66 @@
 <div>
-    <h2>Danh sách người dùng</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>STT</th>
-          <th>Họ và Tên</th>
-          <th>Tuổi</th>
-          <th>Chức vụ</th>
-          <th>Email</th>
-          <th>Ngân hàng</th>
-          <th>Số tài khoản ngân hàng</th>
-          <th>Địa chỉ</th>
-          <th>CMND</th>
-          <th>Lương</th>
-          <th>Giới tính</th>
-          <th>Số điện thoại</th>
-          <th>Trạng thái</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ user.FullName }}</td>
-          <td>{{ user.Age }}</td>
-          <td>{{ user.Positon }}</td>
-          <td>{{ user.Email }}</td>
-          <td>{{ user.Bank }}</td>
-          <td>{{ user.BankAccount }}</td>
-          <td>{{ user.Address }}</td>
-          <td>{{ user.Indentify }}</td>
-          <td>{{ user.Salary }}</td>
-          <td>{{ user.Sex }}</td>
-          <td>{{ user.PhoneNumber }}</td>
-          <td>{{ user.Status ? 'Hoạt động' : 'Ngừng hoạt động' }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <button (click)="toggleUserForm()">New User</button>
+
+  <div *ngIf="showUserForm">
+    <h3>Nhập thông tin người dùng mới</h3>
+    <label>Họ và Tên: <input type="text" [(ngModel)]="newUser.FullName"></label>
+    <label>Email: <input type="email" [(ngModel)]="newUser.email"></label>
+    <label>Password: <input type="password" [(ngModel)]="newUser.password"></label>
+    <label>Confirm Password: <input type="password" [(ngModel)]="newUser.confirmPassword"></label>
+    <label>Số điện thoại: <input type="text" [(ngModel)]="newUser.PhoneNumber"></label>
+    <label>Chức vụ: <input type="text" [(ngModel)]="newUser.Position"></label>
+    <label>Ngân hàng: <input type="text" [(ngModel)]="newUser.Bank"></label>
+    <label>Số tài khoản ngân hàng: <input type="text" [(ngModel)]="newUser.BankAccount"></label>
+    <label>Địa chỉ: <input type="text" [(ngModel)]="newUser.Address"></label>
+    <label>CMND: <input type="text" [(ngModel)]="newUser.Indentify"></label>
+    <label>Lương: <input type="number" [(ngModel)]="newUser.Salary"></label>
+    <label>Giới tính: <input type="text" [(ngModel)]="newUser.Sex"></label>
+
+    <!-- Dropdown cho Role -->
+    <label>Vai trò:
+      <select [(ngModel)]="newUser.Role">
+        <option *ngFor="let role of roles" [value]="role.Id">{{ role.RoleName }}</option>
+      </select>
+    </label>
+
+    <button (click)="createUser()">Create</button>
   </div>
-  
+
+  <h2>Danh sách người dùng</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Họ và Tên</th>
+        <th>Tuổi</th>
+        <th>Chức vụ</th>
+        <th>Email</th>
+        <th>Ngân hàng</th>
+        <th>Số tài khoản ngân hàng</th>
+        <th>Địa chỉ</th>
+        <th>CMND</th>
+        <th>Lương</th>
+        <th>Giới tính</th>
+        <th>Số điện thoại</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.FullName }}</td>
+        <td>{{ user.Age }}</td>
+        <td>{{ user.Position }}</td>
+        <td>{{ user.Email }}</td>
+        <td>{{ user.Bank }}</td>
+        <td>{{ user.BankAccount }}</td>
+        <td>{{ user.Address }}</td>
+        <td>{{ user.Indentify }}</td>
+        <td>{{ user.Salary }}</td>
+        <td>{{ user.Sex }}</td>
+        <td>{{ user.PhoneNumber }}</td>
+        <td>{{ user.Status ? 'Hoạt động' : 'Ngừng hoạt động' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
