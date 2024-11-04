@@ -1,1 +1,62 @@
-<p>my-timesheet works!</p>
+<div class="timesheet-layout">
+  <!-- Hiển thị ngày được chọn ở trên cùng -->
+  <div class="header">
+    <span class="today-date">{{ selectedDate | date: 'yyyy-MM-dd' }}</span>
+  </div>
+
+  <div class="week-navigation">
+    <!-- Nút điều hướng tuần trước -->
+    <button (click)="previousWeek()">←</button>
+
+    <!-- Bảng hiển thị các thứ trong tuần -->
+    <table class="days-of-week">
+      <tr>
+        <td *ngFor="let day of daysOfWeek" 
+            [class.highlight]="day.date.getDay() === selectedDate.getDay()"
+            (click)="changeDate(day.date, day.dayName)">
+          {{ day.dayName }}
+        </td>
+      </tr>
+    </table>
+
+    <!-- Nút điều hướng tuần kế tiếp -->
+    <button (click)="nextWeek()">→</button>
+  </div>
+
+  <!-- Nút thêm daily -->
+  <button class="add-daily-btn" (click)="openModal()">+</button>
+
+  <div *ngIf="showDailyForm" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Thêm Daily</h5>
+          <button type="button" class="close" (click)="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Project:</label>
+            <select class="form-control" [(ngModel)]="newDaily.Project">
+              <option value="" disabled selected>Chọn dự án</option> <!-- Tùy chọn này không thể chọn -->
+              <option *ngFor="let project of projects" [value]="project.Id">
+                {{ project.ProjectName }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Working Time (hours):</label>
+            <input type="number" class="form-control" [(ngModel)]="newDaily.WorkingTime">
+          </div>
+          <div class="mb-3">
+            <label>Note:</label>
+            <textarea class="form-control" [(ngModel)]="newDaily.Content"></textarea>
+          </div>
+          <button class="btn btn-success" (click)="addDaily()">Save</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

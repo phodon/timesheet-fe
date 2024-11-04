@@ -1,0 +1,142 @@
+.table {
+    border-collapse: collapse;
+    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
+  }
+  
+  .table th, .table td {
+    padding: 12px; /* Thêm khoảng cách cho ô */
+    text-align: center; /* Căn giữa văn bản */
+    border: 1px solid #dee2e6; /* Đường viền cho ô */
+  }
+  
+  h2 {
+    color: #343a40; /* Màu sắc cho tiêu đề */
+    font-weight: bold; /* Làm đậm tiêu đề */
+  }
+
+  .table-row {
+    cursor: pointer; /* Con trỏ chuột chuyển sang dạng nhấp chuột */
+  }
+  
+  .table-row:hover {
+    background-color: #f0f8ff; /* Màu nổi bật khi di chuột qua */
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Màu nền tối */
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 8px;
+    z-index: 1060;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .close {
+    font-size: 1.2rem;
+    color: #888;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+  }
+  
+  .modal-body {
+    padding: 15px 0;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  
+  .modal-body .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .modal-body label {
+    display: block;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .modal-body input[type="text"],
+  .modal-body input[type="number"],
+  .modal-body input[type="email"],
+  .modal-body input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: border-color 0.2s;
+  }
+  
+  .modal-body input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+    border-top: 1px solid #e5e5e5;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+    
+  

@@ -1,0 +1,23 @@
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 10%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+  }
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .btn-primary:hover {
+    font-weight: bold;
+  }
+  .form-label {
+    font-weight: bold;
+  }
+  
+  

@@ -1,0 +1,19 @@
+/* Đặt kiểu chữ chung cho tất cả các mục trong nz-collapse */
+.nz-collapse .nz-collapse-header,
+.collapse-panel-link {
+  font-size: 16px; /* Kích thước chữ đồng nhất */
+  font-weight: 400; /* Đặt độ đậm đồng nhất */
+  color: #333; /* Màu chữ */
+  padding: 16px; /* Khoảng cách đều */
+}
+
+.nz-collapse .nz-collapse-header:hover,
+.collapse-panel-link:hover {
+  background-color: #e6f7ff; /* Hiệu ứng hover */
+}
+
+/* Đảm bảo khoảng cách dưới các mục có border */
+.collapse-panel-link,
+.nz-collapse .nz-collapse-header {
+  border-bottom: 1px solid #f0f0f0;
+}

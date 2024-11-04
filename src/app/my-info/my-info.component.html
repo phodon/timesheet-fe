@@ -1,13 +1,59 @@
-<!-- src/app/components/my-info/my-info.component.html -->
-<div *ngIf="userInfo">
-    <h2>Thông tin người dùng</h2>
-    <p><strong>Họ và tên:</strong> {{ userInfo.FullName }}</p>
-    <p><strong>Tuổi:</strong> {{ userInfo.Age }}</p>
-    <p><strong>Email:</strong> {{ userInfo.Email }}</p>
-    <p><strong>Địa chỉ:</strong> {{ userInfo.Address }}</p>
-    <!-- Thêm các trường khác nếu cần -->
+<div *ngIf="userInfo" class="user-info-container">
+  <h2>Thông tin cá nhân</h2>
+  <div class="user-info">
+    <div class="form-group">
+      <label>Họ và Tên</label>
+      <input [(ngModel)]="userInfo.FullName" />
+    </div>
+    <div class="form-group">
+      <label>Tuổi</label>
+      <input [(ngModel)]="userInfo.Age" type="number" />
+    </div>
+    <div class="form-group">
+      <label>Chức vụ</label>
+      <input [(ngModel)]="userInfo.Position" />
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input [(ngModel)]="userInfo.Email" type="email" />
+    </div>
+    <div class="form-group">
+      <label>Ngân hàng</label>
+      <input [(ngModel)]="userInfo.Bank" />
+    </div>
+    <div class="form-group">
+      <label>Số tài khoản ngân hàng</label>
+      <input [(ngModel)]="userInfo.BankAccount" />
+    </div>
+    <div class="form-group">
+      <label>Địa chỉ</label>
+      <input [(ngModel)]="userInfo.Address" />
+    </div>
+    <div class="form-group">
+      <label>CMND</label>
+      <input [(ngModel)]="userInfo.Indentify" />
+    </div>
+    <div class="form-group">
+      <label>Lương</label>
+      <input [(ngModel)]="userInfo.Salary" type="number" />
+    </div>
+    <div class="form-group">
+      <label>Giới tính</label>
+      <input [(ngModel)]="userInfo.Sex" />
+    </div>
+    <div class="form-group">
+      <label>Số điện thoại</label>
+      <input [(ngModel)]="userInfo.PhoneNumber" />
+    </div>
+    <div class="form-group">
+      <label>Trạng thái</label>
+      <span>{{ userInfo.Status ? 'Hoạt động' : 'Ngừng hoạt động' }}</span>
+    </div>
+    <div class="form-group action-group">
+      <button (click)="updateUser()" class="btn btn-primary">Lưu</button>
+    </div>
   </div>
-  <div *ngIf="!userInfo">
-    <p>Đang tải thông tin người dùng...</p>
-  </div>
-  
+</div>
+<div *ngIf="!userInfo">
+  <p>Đang tải thông tin cá nhân...</p>
+</div>

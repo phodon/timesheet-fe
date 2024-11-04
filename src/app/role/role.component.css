@@ -1,0 +1,15 @@
+.table {
+    border-collapse: collapse;
+    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
+  }
+  
+  .table th, .table td {
+    padding: 12px; /* Thêm khoảng cách cho ô */
+    text-align: center; /* Căn giữa văn bản */
+    border: 1px solid #dee2e6; /* Đường viền cho ô */
+  }
+  
+  h2 {
+    color: #343a40; /* Màu sắc cho tiêu đề */
+    font-weight: bold; /* Làm đậm tiêu đề */
+  }

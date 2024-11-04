@@ -1,10 +1,8 @@
 <nz-collapse>
-  <!-- My Information (No sub-options) -->
-  <nz-collapse-panel nzHeader="My Information" [nzShowArrow]="false">
-    <ul>
-      <li><a routerLink="/home/my-info">My Information</a></li>
-    </ul>
-  </nz-collapse-panel>
+  <!-- My Information (No sub-options, behaves like a simple link) -->
+  <div class="collapse-panel-link" [routerLink]="'/home/my-info'">
+    My Information
+  </div>
 
   <!-- Personal Timesheet (With sub-options) -->
   <nz-collapse-panel nzHeader="Personal Timesheet" [nzShowArrow]="true">

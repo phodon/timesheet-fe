@@ -1,0 +1,184 @@
+.timesheet-layout {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.today-date {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.week-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.days-of-week {
+  border-collapse: collapse;
+  margin: 0 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.days-of-week th, .days-of-week td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.days-of-week td:hover {
+  background-color: #f0f0f0;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.days-of-week td {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* CSS cho cột ngày được chọn */
+.days-of-week td.highlight {
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.add-daily-btn {
+  position: relative; /* Thay đổi từ fixed sang relative */
+  margin-top: 20px; /* Khoảng cách từ bảng đến nút */
+  padding: 10px 20px; /* Thêm padding để tạo hình chữ nhật */
+  font-size: 16px; /* Kích thước chữ */
+  background-color: #007bff; /* Màu xanh nước biển */
+  color: white;
+  border: none;
+  border-radius: 4px; /* Bo góc một chút, nếu muốn */
+  cursor: pointer;
+  z-index: 1; /* Đảm bảo nút có z-index thấp hơn modal nhưng vẫn hiển thị trên bảng */
+}
+
+.add-daily-btn:hover {
+  background-color: #0056b3; /* Màu khi hover */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Tối hơn một chút để tạo cảm giác sang trọng */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+}
+
+.modal-dialog {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px; /* Kích thước tối đa của modal */
+  width: 90%; /* Đảm bảo modal vừa đủ cho màn hình nhỏ */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Thêm bóng cho modal */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #007bff; /* Đường viền dưới đẹp hơn cho header */
+  padding-bottom: 10px;
+}
+
+.modal-title {
+  font-size: 20px;
+  color: #007bff; /* Màu tiêu đề */
+}
+
+.close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #007bff; /* Màu cho nút đóng */
+}
+
+.modal-body {
+  margin: 20px 0; /* Khoảng cách giữa các phần */
+}
+
+.mb-3 {
+  margin-bottom: 15px; /* Khoảng cách giữa các trường */
+}
+
+label {
+  font-weight: bold; /* Làm cho nhãn nổi bật hơn */
+  color: #333;
+}
+
+.form-control {
+  width: 100%; /* Chiều rộng đầy đủ cho input và textarea */
+  padding: 10px; /* Padding cho input */
+  border: 1px solid #ccc; /* Đường viền cho input */
+  border-radius: 4px; /* Bo góc cho input */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Bóng cho input */
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Đổi màu khi focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Bóng khi focus */
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end; /* Đưa nút "Đóng" sang phải */
+  margin-top: 20px; /* Khoảng cách trên footer */
+}
+
+.btn {
+  padding: 10px 15px; /* Padding cho các nút */
+  border-radius: 4px; /* Bo góc cho nút */
+}
+
+.btn-success {
+  background-color: #28a745; /* Màu xanh cho nút "Thêm Daily" */
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Màu khi hover */
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Màu xám cho nút "Đóng" */
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268; /* Màu khi hover */
+}

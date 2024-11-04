@@ -1,18 +1,17 @@
-<div>
-    <h2>Danh sách vai trò</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>STT</th>
-          <th>Role Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let role of roles; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ role.RoleName }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Danh sách vai trò</h2>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Role Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ role.RoleName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
