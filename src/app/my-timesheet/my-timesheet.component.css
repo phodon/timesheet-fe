@@ -3,9 +3,12 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  width: 86vw; /* Chiều rộng toàn bộ màn hình */
+  height: 35vh; /* Chiều cao toàn bộ màn hình */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: auto; /* Cho phép thanh cuộn nếu nội dung quá lớn */
+  margin: 10px;
 }
-
 .header {
   display: flex;
   justify-content: flex-start;
@@ -42,13 +45,25 @@
 }
 
 button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
+  margin-top: 10px; /* Tạo khoảng cách trên */
+  margin-left: 10px; 
+  margin-bottom: 10px; /* Tạo khoảng cách dưới */
+  padding: 8px 16px; /* Thêm padding cho nút */
+  background-color: #007bff; /* Màu nền */
+  color: white; /* Màu chữ */
+  border: none; /* Loại bỏ viền */
+  border-radius: 4px; /* Bo góc */
+  cursor: pointer; /* Con trỏ chuột */
 }
+
+button:hover {
+  background-color: #0056b3; /* Thay đổi màu nền khi hover */
+}
+
+div {
+  margin-bottom: 15px; /* Thêm khoảng cách giữa các khối */
+}
+
 
 button:hover {
   background-color: #0056b3;
@@ -182,3 +197,17 @@ label {
 .btn-secondary:hover {
   background-color: #5a6268; /* Màu khi hover */
 }
+
+.selected-daily-entry {
+  background-color: #f0f0f0; /* Light gray background */
+  border: 1px solid #ccc;    /* Optional border for clarity */
+  padding: 16px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.selected-daily-entry p {
+  margin: 8px 0; /* Adjusts spacing for paragraphs */
+  color: #333;   /* Text color for readability */
+}
+

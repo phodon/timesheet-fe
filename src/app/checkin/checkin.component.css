@@ -1,0 +1,76 @@
+.checkin-layout {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 86vw; /* Chiều rộng tối đa của layout */
+    height: 35vh; /* Chiều cao của layout */
+    margin: 10px;
+    overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá lớn */
+}
+
+.table {
+    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng của layout */
+    table-layout: fixed; /* Cố định chiều rộng các cột */
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px; /* Padding hợp lý cho ô */
+    word-wrap: break-word; /* Tự động xuống dòng nếu nội dung quá dài */
+    overflow: hidden; /* Giới hạn nội dung trong ô */
+}
+
+.table th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.table td:hover {
+    background-color: #f0f0f0;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;  /* Aligns items vertically in the center */
+    gap: 15px;  /* Space between Summary and select-container */
+    margin-bottom: 15px;
+  }
+  
+  /* Style for dropdown container */
+  .select-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Style for labels and selects within select-container */
+  label {
+    font-size: 0.9rem;
+    margin-right: 5px;
+  }
+  
+  select {
+    padding: 4px 6px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    width: 100px;
+  }
+  
+  select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .working-time {
+    font-size: 9px; /* Adjust the font size as needed */
+    white-space: nowrap; /* Prevent text from wrapping */
+  }

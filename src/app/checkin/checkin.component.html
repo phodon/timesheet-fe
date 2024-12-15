@@ -1,0 +1,51 @@
+<div class="checkin-layout">
+  <div class="header-container">
+    <h3>Summary</h3>
+    <div class="select-container">
+      <label for="yearSelect">Year:</label>
+      <select
+        id="yearSelect"
+        [(ngModel)]="selectedYear"
+        (change)="onYearOrMonthChange()"
+      >
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+
+      <label for="monthSelect">Month:</label>
+      <select
+        id="monthSelect"
+        [(ngModel)]="selectedMonth"
+        (change)="onYearOrMonthChange()"
+      >
+        <option *ngFor="let month of months" [value]="month.value">
+          {{ month.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Table to display days of the selected month -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th *ngFor="let day of currentMonthDays">
+          <div class="date-cell">
+            <div class="date">{{ day | date : "dd" }}</div>
+            <div class="day">{{ day | date : "EEE" }}</div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngFor="let day of currentMonthDays">
+          <div class="working-time">
+            <!-- Hiển thị check-in và check-out của mỗi ngày -->
+            <div class="working-time">{{ workingTimeData[day.getDate()].checkIn || '--:--' }}</div>
+            <div class="working-time">{{ workingTimeData[day.getDate()].checkOut || '--:--' }}</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

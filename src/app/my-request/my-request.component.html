@@ -1,1 +1,50 @@
-<p>my-request works!</p>
+<div class="calendar">
+  <div class="calendar-header">
+    <div class="header-container">
+      <h3>My Requests</h3>
+      <div class="select-container">
+        <label for="yearSelect">Year:</label>
+        <select
+          id="yearSelect"
+          [(ngModel)]="selectedYear"
+          (change)="onYearOrMonthChange()"
+        >
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+
+        <label for="monthSelect">Month:</label>
+        <select
+          id="monthSelect"
+          [(ngModel)]="selectedMonth"
+          (change)="onYearOrMonthChange()"
+        >
+          <option *ngFor="let month of months" [value]="month.value">
+            {{ month.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-body">
+    <!-- Header row with the days of the week -->
+    <div class="calendar-row calendar-header-row">
+      <div class="calendar-cell" *ngFor="let day of daysOfWeek">
+        {{ day }}
+      </div>
+    </div>
+
+    <!-- Rows with the days of the month -->
+    <div class="calendar-row" *ngFor="let week of calendarDays">
+      <div
+        class="calendar-cell"
+        *ngFor="let day of week"
+        [class.other-month]="!day.isCurrentMonth"
+      >
+        <!-- Display "OFF" if it's a weekend (Saturday or Sunday) -->
+        <div *ngIf="isWeekend(day.day)" class="off-label">OFF</div>
+        {{ extractDay(day.day) }}
+      </div>
+    </div>
+  </div>
+</div>

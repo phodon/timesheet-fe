@@ -1,0 +1,111 @@
+.calendar {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 86vw; /* Chiều rộng tối đa của layout */
+  height: 60vh; /* Chiều cao của layout */
+  margin: 10px;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá lớn */
+}
+
+.calendar-header {
+  font-size: 1.5em;
+  padding: 0.5em;
+  background-color: #007bff; /* Xanh nước biển */
+  color: white; /* Màu chữ trắng */
+  text-align: center;
+}
+
+label {
+  color: #333; /* Chữ màu đen */
+  font-weight: bold; /* Tùy chọn: chữ đậm cho các label */
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-rows: auto;
+}
+
+.calendar-header-row,
+.calendar-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* Chia đều thành 7 cột */
+  text-align: center;
+}
+
+.calendar-cell {
+  padding: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  color: #333; /* Tất cả chữ đều màu đen */
+}
+
+.calendar-header-row .calendar-cell {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333; /* Chữ màu đen cho tên các ngày trong tuần */
+}
+
+.calendar-cell:not(.other-month) {
+  background-color: #ffffff;
+  color: #333; /* Chữ màu đen cho ngày trong tháng */
+}
+
+.other-month {
+  color: #bbb; /* Chữ mờ cho ngày thuộc tháng khác */
+  background-color: #f9f9f9;
+}
+
+.calendar-cell:hover {
+  background-color: #e0e0e0;
+  color: #007bff; /* Màu chữ xanh nước biển khi hover */
+}
+
+.select-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+select {
+  padding: 4px 6px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  color: #333; /* Chữ đen cho dropdown */
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  width: 70px;
+}
+
+select:focus {
+  border-color: #007bff; /* Đổi màu viền khi focus sang xanh nước biển */
+  outline: none;
+}
+
+/* Thêm style cho chữ "Off" trong các ô ngày thứ 7 và chủ nhật */
+.calendar-cell {
+  position: relative; /* Cần thêm position: relative để có thể căn chỉnh chữ "Off" */
+}
+
+.calendar-cell:not(.other-month) {
+  background-color: #ffffff;
+  color: #333; /* Chữ màu đen cho ngày trong tháng */
+}
+
+.off-label {
+  position: absolute; /* Đặt vị trí tuyệt đối cho chữ "Off" */
+  top: 5px; /* Cách cạnh trên 5px */
+  left: 5px; /* Cách cạnh trái 5px */
+  background-color: #ff4747; /* Màu nền cho chữ Off */
+  color: white; /* Màu chữ trắng */
+  font-size: 0.8rem; /* Kích thước chữ */
+  padding: 2px 5px; /* Khoảng cách giữa chữ và viền */
+  border-radius: 4px; /* Viền bo tròn */
+}
+

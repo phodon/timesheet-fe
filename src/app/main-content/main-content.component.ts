@@ -8,6 +8,7 @@ import { UsersComponent } from '../users/users.component';
 import { RoleComponent } from '../role/role.component';
 import { ProjectComponent } from '../project/project.component';
 import { RequestComponent } from '../request/request.component';
+import { SalaryComponent } from '../salary/salary.component';
 
 @Component({
   selector: 'app-main-content',
@@ -20,7 +21,8 @@ import { RequestComponent } from '../request/request.component';
     UsersComponent,
     RoleComponent,
     ProjectComponent,
-    RequestComponent
+    RequestComponent,
+    SalaryComponent
   ],
   templateUrl: './main-content.component.html',
   styleUrls: ['./main-content.component.css']

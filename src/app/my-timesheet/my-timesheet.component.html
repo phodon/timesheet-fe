@@ -1,43 +1,82 @@
 <div class="timesheet-layout">
-  <!-- Hiển thị ngày được chọn ở trên cùng -->
+  <!-- Display the selected date at the top -->
   <div class="header">
     <span class="today-date">{{ selectedDate | date: 'yyyy-MM-dd' }}</span>
   </div>
 
   <div class="week-navigation">
-    <!-- Nút điều hướng tuần trước -->
+    <!-- Previous week navigation button -->
     <button (click)="previousWeek()">←</button>
 
-    <!-- Bảng hiển thị các thứ trong tuần -->
+    <!-- Table displaying the days of the week -->
     <table class="days-of-week">
       <tr>
         <td *ngFor="let day of daysOfWeek" 
-            [class.highlight]="day.date.getDay() === selectedDate.getDay()"
-            (click)="changeDate(day.date, day.dayName)">
-          {{ day.dayName }}
+            [class.highlight]="day.date.getTime() === selectedDate.getTime()"
+            (click)="changeDate(day.date, day.dayName)"><strong>
+          {{ day.dayName }}</strong>
         </td>
+        <td><strong>Total</strong></td> <!-- Add Total column header -->
+      </tr>
+      <tr>
+        <td *ngFor="let day of daysOfWeek">
+          <!-- Display daily working hours for each day -->
+          {{ getDailyHours(day.date) }}
+        </td>
+        <td>{{ weeklyTotalHours }}</td> <!-- Display weekly total hours -->
       </tr>
     </table>
 
-    <!-- Nút điều hướng tuần kế tiếp -->
+    <!-- Next week navigation button -->
     <button (click)="nextWeek()">→</button>
   </div>
 
-  <!-- Nút thêm daily -->
-  <button class="add-daily-btn" (click)="openModal()">+</button>
+  <!-- Conditionally display daily entry details or add button -->
+  <div *ngIf="selectedDailyEntry; else addDailyButton" class="selected-daily-entry">
+    <p><strong>Project:</strong> {{ getProjectName(selectedDailyEntry.ProjectId) }}</p>
+    <p><strong>Content:</strong> {{ selectedDailyEntry.Content }}</p>
+  </div>
 
+  <!-- Add daily button shown only if no entry exists for the selected date -->
+  <div>
+    <div *ngIf="checkInTime">
+      <label>Check-in:</label>
+      <span>{{ checkInTime }}</span>
+    </div>
+    <div *ngIf="isToday() && !checkInTime">
+      <button (click)="createCheckIn()">Create Check-in</button>
+    </div>
+    
+    <div *ngIf="checkOutTime">
+      <label>Check-out:</label>
+      <span>{{ checkOutTime }}</span>
+    </div>
+    <div *ngIf="isToday() && !checkOutTime">
+      <button (click)="createCheckOut()">Create Check-out</button>
+    </div>
+    <div>
+      <button (click)="createAttendance()">Create Attendance</button>
+    </div>
+    
+    <ng-template #addDailyButton>
+      <button class="add-daily-btn" (click)="openModal()">Create Daily</button>
+    </ng-template>
+  </div>
+
+
+  <!-- Modal for adding daily entry -->
   <div *ngIf="showDailyForm" class="modal-overlay">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Thêm Daily</h5>
+          <h5 class="modal-title">Add Daily Entry</h5>
           <button type="button" class="close" (click)="closeModal()">&times;</button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
             <label>Project:</label>
             <select class="form-control" [(ngModel)]="newDaily.Project">
-              <option value="" disabled selected>Chọn dự án</option> <!-- Tùy chọn này không thể chọn -->
+              <option value="" disabled selected>Select a project</option>
               <option *ngFor="let project of projects" [value]="project.Id">
                 {{ project.ProjectName }}
               </option>
@@ -60,3 +99,6 @@
     </div>
   </div>
 </div>
+<div><app-checkin></app-checkin></div>
+
+<div><app-attendance></app-attendance></div>
