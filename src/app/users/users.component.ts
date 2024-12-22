@@ -183,7 +183,6 @@ updateUser(): void {
   const headers = new HttpHeaders({
     'token': `Bearer ${accessToken}`
   });
-  console.log(this.selectedUser)
 
   this.http.put<any>(`http://localhost:8080/api/user/updateUser/${this.selectedUser.Id}`, this.selectedUser, { headers })
     .subscribe(

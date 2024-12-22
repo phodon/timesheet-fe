@@ -1,1 +1,112 @@
-<p>project works!</p>
+<div class="container mt-4">
+    <button class="btn btn-primary mb-3" (click)="toggleProjectForm()">New Project</button>
+  
+    <div class="mb-4">
+      <label>Tên dự án:</label>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchProjectName" placeholder="Nhập tên dự án để tìm kiếm">
+        <button class="btn btn-outline-secondary" (click)="searchProjectByName()">Search by Name</button>
+      </div>
+    </div>
+  
+    <!-- Form Tạo dự án mới -->
+    <div *ngIf="showProjectForm" class="modal-overlay">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Nhập thông tin dự án mới</h5>
+            <button type="button" class="close" (click)="closeModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <!-- Form Nhập dự án mới -->
+            <div class="mb-3">
+              <label>Tên dự án:</label>
+              <input type="text" class="form-control" [(ngModel)]="newProject.ProjectName" placeholder="Nhập tên dự án">
+            </div>
+            <div class="mb-3">
+              <label>Tên khách hàng:</label>
+              <input type="text" class="form-control" [(ngModel)]="newProject.ClientName" placeholder="Nhập tên khách hàng">
+            </div>
+            <div class="mb-3">
+              <label>Mô tả:</label>
+              <input type="text" class="form-control" [(ngModel)]="newProject.Description" placeholder="Nhập mô tả dự án">
+            </div>
+  
+            <button class="btn btn-success" (click)="createProject()">Tạo dự án</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Hiển thị danh sách dự án -->
+    <div>
+      <h2>Danh sách dự án</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên Dự Án</th>
+            <th>Tên Khách Hàng</th>
+            <th>Mô Tả</th>
+            <th>PM</th>
+            <th>Số Lượng Thành Viên</th>
+            <th>Ngày Tạo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of searchResults.length > 0 ? searchResults : projects; let i = index" 
+              (click)="viewProjectDetails(project.Id)">
+            <td>{{ i + 1 }}</td>
+            <td>{{ project.ProjectName }}</td>
+            <td>{{ project.ClientName }}</td>
+            <td>{{ project.Description }}</td>
+            <td>{{ project.PM }}</td>
+            <td>{{ project.QuantityMember }}</td>
+            <td>{{ project.Created | date:'dd/MM/yyyy HH:mm' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="showDetailsModal && detailedProject" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Chi tiết dự án</h5>
+          <button type="button" class="close" (click)="closeDetailsModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Tên Dự Án:</label>
+            <input type="text" [(ngModel)]="detailedProject.ProjectName" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Tên Khách Hàng:</label>
+            <input type="text" [(ngModel)]="detailedProject.ClientName" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Mô Tả:</label>
+            <input type="text" [(ngModel)]="detailedProject.Description" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>PM:</label>
+            <input type="text" [(ngModel)]="detailedProject.PM" class="form-control" disabled />
+          </div>
+          <div class="form-group">
+            <label>Số Lượng Thành Viên:</label>
+            <input type="number" [(ngModel)]="detailedProject.QuantityMember" class="form-control" disabled />
+          </div>
+          <div class="form-group">
+            <label>Ngày Tạo:</label>
+            <input type="text" [(ngModel)]="detailedProject.Created" class="form-control" disabled />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeDetailsModal()">Hủy</button>
+          <button type="button" class="btn btn-primary" (click)="updateProject()">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
