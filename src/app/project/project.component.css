@@ -1,6 +1,6 @@
 .table {
   border-collapse: collapse;
-  width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
+  width: 140%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
 }
 
 .table th, .table td {

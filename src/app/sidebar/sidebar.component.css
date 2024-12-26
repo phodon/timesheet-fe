@@ -17,3 +17,52 @@
 .nz-collapse .nz-collapse-header {
   border-bottom: 1px solid #f0f0f0;
 }
+/* Xóa dấu chấm trong danh sách */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Thêm khoảng cách và trang trí cho các phần tử li */
+ul li {
+  margin: 4px 0;
+}
+
+/* Thêm kiểu dáng cho các liên kết a */
+ul li a {
+  text-decoration: none;
+  color: #007bff; /* Màu xanh lam cho liên kết */
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Màu nền thay đổi khi hover */
+ul li a:hover {
+  background-color: #f0f0f0;
+  color: #0056b3;
+}
+
+/* Thêm khoảng cách giữa các collapse panel */
+.nz-collapse-panel {
+  margin-bottom: 10px;
+}
+
+/* Tăng độ nổi bật của phần tiêu đề collapse */
+.nz-collapse-panel .ant-collapse-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Tăng chiều cao cho các collapse panel */
+.nz-collapse-panel .ant-collapse-content {
+  padding: 10px;
+}

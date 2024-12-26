@@ -211,3 +211,31 @@ label {
   color: #333;   /* Text color for readability */
 }
 
+.but-ton {
+  display: flex;
+  flex-wrap: wrap; /* Đảm bảo các phần tử tự xuống dòng nếu không đủ không gian */
+  gap: 10px; /* Khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: flex-start; /* Căn trái, có thể đổi thành `center` hoặc `space-between` nếu cần */
+}
+
+.but-ton div {
+  display: flex;
+  align-items: center; /* Căn giữa các nội dung bên trong div */
+  gap: 5px; /* Khoảng cách giữa nhãn (label) và giá trị (span) */
+}
+
+.but-ton button {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.but-ton button:hover {
+  background-color: #0056b3;
+}

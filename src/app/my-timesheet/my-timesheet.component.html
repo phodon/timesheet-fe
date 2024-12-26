@@ -38,7 +38,7 @@
   </div>
 
   <!-- Add daily button shown only if no entry exists for the selected date -->
-  <div>
+  <div class="but-ton">
     <div *ngIf="checkInTime">
       <label>Check-in:</label>
       <span>{{ checkInTime }}</span>
@@ -57,10 +57,11 @@
     <div>
       <button (click)="createAttendance()">Create Attendance</button>
     </div>
-    
-    <ng-template #addDailyButton>
-      <button class="add-daily-btn" (click)="openModal()">Create Daily</button>
-    </ng-template>
+    <div>
+      <ng-template #addDailyButton>
+        <button class="add-daily-btn" (click)="openModal()">Create Daily</button>
+      </ng-template>
+    </div>
   </div>
 
 

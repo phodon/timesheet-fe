@@ -1,142 +1,186 @@
 .table {
-    border-collapse: collapse;
-    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
-  }
-  
-  .table th, .table td {
-    padding: 12px; /* Thêm khoảng cách cho ô */
-    text-align: center; /* Căn giữa văn bản */
-    border: 1px solid #dee2e6; /* Đường viền cho ô */
-  }
-  
-  h2 {
-    color: #343a40; /* Màu sắc cho tiêu đề */
-    font-weight: bold; /* Làm đậm tiêu đề */
-  }
+  border-collapse: collapse;
+  width: 140%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
+  margin-bottom: 1rem;
+  color: #212529;
+  background-color: transparent;
+}
 
-  .table-row {
-    cursor: pointer; /* Con trỏ chuột chuyển sang dạng nhấp chuột */
-  }
-  
-  .table-row:hover {
-    background-color: #f0f8ff; /* Màu nổi bật khi di chuột qua */
-  }
+.table th, .table td {
+  padding: 12px; /* Thêm khoảng cách cho ô */
+  text-align: center; /* Căn giữa văn bản */
+  border: 1px solid #dee2e6; /* Đường viền cho ô */
+}
 
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Màu nền tối */
-    z-index: 1050;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .modal-dialog {
-    position: relative;
-    width: 90%;
-    max-width: 600px;
-    background: #fff;
-    border-radius: 8px;
-    z-index: 1060;
-    padding: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
-    padding-bottom: 10px;
-  }
-  
-  .modal-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .close {
-    font-size: 1.2rem;
-    color: #888;
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-  }
-  
-  .modal-body {
-    padding: 15px 0;
-    max-height: 60vh;
-    overflow-y: auto;
-  }
-  
-  .modal-body .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .modal-body label {
-    display: block;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 5px;
-  }
-  
-  .modal-body input[type="text"],
-  .modal-body input[type="number"],
-  .modal-body input[type="email"],
-  .modal-body input[type="tel"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    transition: border-color 0.2s;
-  }
-  
-  .modal-body input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 15px;
-    border-top: 1px solid #e5e5e5;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  
-  .btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #5a6268;
-  }
-  
-    
-  
+.table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.table td {
+  color: #333;
+}
+
+/* Thêm màu nền cho hàng lẻ */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Thêm hiệu ứng hover */
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+h2 {
+  color: #343a40; /* Màu sắc cho tiêu đề */
+  font-weight: bold; /* Làm đậm tiêu đề */
+}
+
+.table-row {
+  cursor: pointer; /* Con trỏ chuột chuyển sang dạng nhấp chuột */
+}
+
+.table-row:hover {
+  background-color: #f0f8ff; /* Màu nổi bật khi di chuột qua */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Màu nền tối */
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dialog {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 8px;
+  z-index: 1060;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.close {
+  font-size: 1.2rem;
+  color: #888;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.modal-body {
+  padding: 15px 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-body .form-group {
+  margin-bottom: 15px;
+}
+
+.modal-body label {
+  display: block;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="number"],
+.modal-body input[type="email"],
+.modal-body input[type="tel"] {
+  width: 100%;
+  padding: 12px 15px; /* Thêm padding cho cảm giác rộng rãi */
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 1rem; /* Cỡ chữ dễ đọc */
+  color: #333; /* Màu chữ tối */
+  background-color: #f8f9fa; /* Nền sáng cho trường nhập liệu */
+  transition: border-color 0.3s, box-shadow 0.3s ease-in-out; /* Thêm hiệu ứng khi focus */
+}
+
+/* Khi người dùng focus vào các input */
+.modal-body input[type="text"]:focus,
+.modal-body input[type="number"]:focus,
+.modal-body input[type="email"]:focus,
+.modal-body input[type="tel"]:focus {
+  border-color: #007bff; /* Đổi màu viền khi focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Thêm bóng cho cảm giác nâng cao */
+  outline: none; /* Tắt outline mặc định */
+}
+
+/* Đổi màu nền khi trường email đang được điền */
+.modal-body input[type="email"]:valid {
+  background-color: #e9f7fd; /* Màu nền khi email hợp lệ */
+}
+
+.modal-body input[type="email"]:invalid {
+  background-color: #f8d7da; /* Màu nền khi email không hợp lệ */
+}
+
+/* Dấu * cho email bắt buộc */
+.modal-body label[for="email"]::after {
+  content: " *";
+  color: #dc3545; /* Màu đỏ cho dấu * */
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}

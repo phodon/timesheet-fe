@@ -1,32 +1,9 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Căn đều 2 phần tử sang 2 bên */
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ cho header */
 }
 
-.app-title {
-  margin: 0;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.logout {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-}
-
-.logout span {
-  margin-right: 5px;
-}
-
-.logout-icon {
-  width: 20px;
-  height: 20px;
-  margin-left: 5px;
+.logout:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng khi hover vào phần logout */
+  border-radius: 4px; /* Bo góc nhẹ cho phần logout */
+  padding: 5px;
 }
