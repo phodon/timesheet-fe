@@ -72,7 +72,7 @@
       </div>
 
       <label for="reassonInput">Reasson: </label>
-      <input type="text">
+      <input type="text" [(ngModel)]="reason" id="reassonInput" />
     </div>
     <div class="form-footer">
       <button class="confirm-btn" (click)="confirmRequest()">Confirm</button>

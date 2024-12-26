@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import moment from 'moment';
+import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-request',
@@ -19,20 +20,22 @@ export class MyRequestComponent {
   selectedMonth!: number;
   months = Array.from({ length: 12 }, (_, i) => ({ value: i, name: (i + 1).toString() }));
   years: number[] = [];
+  constructor(private http: HttpClient) {}
+  reason: string = '';
 
   // Các biến liên quan đến form
   showForm = false;
   selectedDay = '';
-  selectedStatus = 'off-sang';
+  selectedStatus = 'Off sáng';
   selectedHours = 4;
   hoursError = false;
 
   options = [
-    { value: 'di-muon', label: 'Đi muộn' },
-    { value: 've-som', label: 'Về sớm' },
-    { value: 'off-sang', label: 'Off sáng' },
-    { value: 'off-chieu', label: 'Off chiều' },
-    { value: 'off-ca-ngay', label: 'Off cả ngày' }
+    { value: "di-muon", label: 'Đi muộn', id: 1 },
+    { value: "ve-som", label: 'Về sớm', id: 2 },
+    { value: "off-sang", label: 'Off sáng',  id: 3 },
+    { value: "off-chieu", label: 'Off chiều', id: 4 },
+    { value: "off-ca-ngay", label: 'Off cả ngày', id: 5 }
   ];
   isWeekend(day: string): boolean {
     const date = moment(day, 'YYYY-MM-DD');
@@ -47,7 +50,36 @@ export class MyRequestComponent {
 
   // Phương thức gửi yêu cầu
   sendRequest(): void {
-    console.log('Request sent successfully!');
+    const token = localStorage.getItem('accessToken');  // Lấy token từ localStorage
+    if (!token) {
+      console.log('No token found!');
+      return;
+    }
+
+    const payload = {
+      Date: this.selectedDay,
+      Hours: this.selectedHours,
+      TypeId: this.options.find(option => option.value === this.selectedStatus)?.id,
+      Reason: this.reason
+    };
+
+    const headers = new HttpHeaders({
+      'token': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    console.log('Sending request...', payload);
+
+    this.http.post('http://localhost:8080/api/request/createRequest', payload, { headers }).subscribe(
+      (response: any) => {  // Define response type as 'any' or a specific type if you know the structure
+        console.log('Request sent successfully!', response);
+        // Xử lý thành công, có thể thông báo cho người dùng
+        this.closeForm();
+      },
+      (error: HttpErrorResponse) => {  // Use HttpErrorResponse for error handling
+        console.log('Error sending request', error);
+        // Xử lý lỗi (ví dụ: thông báo lỗi cho người dùng)
+      }
+    );
   }
 
   // Phương thức xác thực giờ
