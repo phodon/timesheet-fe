@@ -12,14 +12,55 @@ import moment from 'moment';
 })
 export class MyRequestComponent {
   daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  calendarDays: { day: string, isCurrentMonth: boolean, status: string }[][] = []; // Cập nhật kiểu dữ liệu
+  calendarDays: { day: string, isCurrentMonth: boolean, status: string }[][] = [];
   currentMonth!: number;
   currentYear!: number;
   selectedYear!: number;
   selectedMonth!: number;
   months = Array.from({ length: 12 }, (_, i) => ({ value: i, name: (i + 1).toString() }));
   years: number[] = [];
-  
+
+  // Các biến liên quan đến form
+  showForm = false;
+  selectedDay = '';
+  selectedStatus = 'off-sang';
+  selectedHours = 4;
+  hoursError = false;
+
+  options = [
+    { value: 'di-muon', label: 'Đi muộn' },
+    { value: 've-som', label: 'Về sớm' },
+    { value: 'off-sang', label: 'Off sáng' },
+    { value: 'off-chieu', label: 'Off chiều' },
+    { value: 'off-ca-ngay', label: 'Off cả ngày' }
+  ];
+  isWeekend(day: string): boolean {
+    const date = moment(day, 'YYYY-MM-DD');
+    const dayOfWeek = date.day();
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  }
+
+  // Phương thức trích xuất ngày
+  extractDay(day: string): string {
+    return moment(day, 'YYYY-MM-DD').format('D');
+  }
+
+  // Phương thức gửi yêu cầu
+  sendRequest(): void {
+    console.log('Request sent successfully!');
+  }
+
+  // Phương thức xác thực giờ
+  validateHours(): void {
+    if (this.selectedStatus === 'di-muon' || this.selectedStatus === 've-som') {
+      if (this.selectedHours > 2) {
+        this.hoursError = true;
+        return;
+      }
+    }
+    this.hoursError = false;
+  }
+
   ngOnInit(): void {
     const today = new Date();
     this.currentMonth = today.getMonth();
@@ -30,18 +71,10 @@ export class MyRequestComponent {
     this.generateCalendar();
   }
 
-  generateYears() {
+  generateYears(): void {
     for (let i = this.currentYear - 10; i <= this.currentYear + 10; i++) {
       this.years.push(i);
     }
-  }
-
-  extractDay(dateString: string): number {
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) {
-      throw new Error('Invalid date string');
-    }
-    return date.getDate();
   }
 
   generateCalendar(): void {
@@ -53,7 +86,6 @@ export class MyRequestComponent {
     let days: { day: string, isCurrentMonth: boolean, status: string }[] = [];
     const lastDayOfPrevMonth = firstDayOfMonth.clone().subtract(1, 'months').endOf('month').date();
 
-    // Add previous month's days
     for (let i = startDayOfWeek - 1; i >= 0; i--) {
       days.push({
         day: firstDayOfMonth.clone().subtract(1, 'months').date(lastDayOfPrevMonth - i).format('YYYY-MM-DD'),
@@ -62,7 +94,6 @@ export class MyRequestComponent {
       });
     }
 
-    // Add current month's days
     for (let day = 1; day <= daysInMonth; day++) {
       days.push({
         day: firstDayOfMonth.clone().date(day).format('YYYY-MM-DD'),
@@ -71,7 +102,6 @@ export class MyRequestComponent {
       });
     }
 
-    // Add next month's days to fill the remaining cells to make a 5-week view (35 cells)
     let nextMonthDay = 1;
     while (days.length < 35) {
       days.push({
@@ -81,7 +111,6 @@ export class MyRequestComponent {
       });
     }
 
-    // Split days into weeks (7 days per week)
     this.calendarDays = [];
     for (let i = 0; i < days.length; i += 7) {
       this.calendarDays.push(days.slice(i, i + 7));
@@ -92,39 +121,45 @@ export class MyRequestComponent {
     this.generateCalendar();
   }
 
-  isWeekend(day: string): boolean {
-    const date = moment(day, 'YYYY-MM-DD');
-    const dayOfWeek = date.day();
-    return dayOfWeek === 0 || dayOfWeek === 6;
-  }
-
-  getCurrentMonthString(): string {
-    return moment([this.selectedYear, this.selectedMonth]).format('YYYY-MM');
-  }
-
   handleClick(day: string): void {
     const date = moment(day, 'YYYY-MM-DD');
     const dayOfWeek = date.day();
     const currentDate = moment();
 
-    // Kiểm tra ngày có phải >= ngày hiện tại và không phải cuối tuần
     if (date.isSameOrAfter(currentDate, 'day') && dayOfWeek >= 1 && dayOfWeek <= 5) {
-      const dayIndex = this.findDayIndex(day);
-      if (dayIndex !== -1) {
-        const dayStatus = this.calendarDays.flat().find(item => item.day === day)?.status;
-
-        const statuses = ['off-sang', 'off-chieu', 'nghi', 'di-muon', 've-som'];
-        const nextStatus = statuses[(statuses.indexOf(dayStatus || 'off-sang') + 1) % statuses.length];
-
-        // Cập nhật trạng thái của ô
-        if (dayIndex !== -1) {
-          this.calendarDays.flat()[dayIndex].status = nextStatus;
-        }
-      }
+      this.selectedDay = day;
+      this.showForm = true;
+      this.selectedStatus = 'off-sang';
+      this.selectedHours = this.getDefaultHours(this.selectedStatus);
+      this.hoursError = false;
     }
   }
 
-  // Tìm chỉ mục của ngày trong calendarDays
+  closeForm(): void {
+    this.showForm = false;
+    this.hoursError = false;
+  }
+
+  confirmRequest(): void {
+    if (this.selectedStatus === 'di-muon' || this.selectedStatus === 've-som') {
+      if (this.selectedHours > 2) {
+        this.hoursError = true;
+        return;
+      }
+    }
+
+    this.hoursError = false;
+    this.updateCalendarDay();
+    this.closeForm();
+  }
+
+  updateCalendarDay(): void {
+    const dayIndex = this.findDayIndex(this.selectedDay);
+    if (dayIndex !== -1) {
+      this.calendarDays.flat()[dayIndex].status = this.selectedStatus;
+    }
+  }
+
   findDayIndex(day: string): number {
     for (let i = 0; i < this.calendarDays.length; i++) {
       const index = this.calendarDays[i].findIndex(d => d.day === day);
@@ -135,8 +170,9 @@ export class MyRequestComponent {
     return -1;
   }
 
-  sendRequest() {
-    console.log('Send Request clicked!');
+  getDefaultHours(status: string): number {
+    if (status === 'off-sang' || status === 'off-chieu') return 4;
+    if (status === 'off-ca-ngay') return 8;
+    return 0;
   }
-
 }

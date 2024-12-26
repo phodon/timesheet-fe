@@ -4,23 +4,30 @@
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 86vw; /* Chiều rộng tối đa của layout */
-  height: 60vh; /* Chiều cao của layout */
+  width: 86vw;
+  /* Chiều rộng tối đa của layout */
+  height: 60vh;
+  /* Chiều cao của layout */
   margin: 10px;
-  overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá lớn */
+  overflow-x: auto;
+  /* Cho phép cuộn ngang nếu bảng quá lớn */
 }
 
 .calendar-header {
   font-size: 1.5em;
   padding: 0.5em;
-  background-color: #007bff; /* Xanh nước biển */
-  color: white; /* Màu chữ trắng */
+  background-color: #007bff;
+  /* Xanh nước biển */
+  color: white;
+  /* Màu chữ trắng */
   text-align: center;
 }
 
 label {
-  color: #333; /* Chữ màu đen */
-  font-weight: bold; /* Tùy chọn: chữ đậm cho các label */
+  color: #333;
+  /* Chữ màu đen */
+  font-weight: bold;
+  /* Tùy chọn: chữ đậm cho các label */
 }
 
 .calendar-body {
@@ -31,7 +38,8 @@ label {
 .calendar-header-row,
 .calendar-row {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* Chia đều thành 7 cột */
+  grid-template-columns: repeat(7, 1fr);
+  /* Chia đều thành 7 cột */
   text-align: center;
 }
 
@@ -41,28 +49,33 @@ label {
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
-  color: #333; /* Tất cả chữ đều màu đen */
+  color: #333;
+  /* Tất cả chữ đều màu đen */
 }
 
 .calendar-header-row .calendar-cell {
   background-color: #f0f0f0;
   font-weight: bold;
-  color: #333; /* Chữ màu đen cho tên các ngày trong tuần */
+  color: #333;
+  /* Chữ màu đen cho tên các ngày trong tuần */
 }
 
 .calendar-cell:not(.other-month) {
   background-color: #ffffff;
-  color: #333; /* Chữ màu đen cho ngày trong tháng */
+  color: #333;
+  /* Chữ màu đen cho ngày trong tháng */
 }
 
 .other-month {
-  color: #bbb; /* Chữ mờ cho ngày thuộc tháng khác */
+  color: #bbb;
+  /* Chữ mờ cho ngày thuộc tháng khác */
   background-color: #f9f9f9;
 }
 
 .calendar-cell:hover {
   background-color: #e0e0e0;
-  color: #007bff; /* Màu chữ xanh nước biển khi hover */
+  color: #007bff;
+  /* Màu chữ xanh nước biển khi hover */
 }
 
 .select-container {
@@ -77,115 +90,262 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #f8f9fa;
-  color: #333; /* Chữ đen cho dropdown */
+  color: #333;
+  /* Chữ đen cho dropdown */
   cursor: pointer;
   transition: border-color 0.3s ease;
   width: 70px;
 }
 
 select:focus {
-  border-color: #007bff; /* Đổi màu viền khi focus sang xanh nước biển */
+  border-color: #007bff;
+  /* Đổi màu viền khi focus sang xanh nước biển */
   outline: none;
 }
 
 /* Thêm style cho chữ "Off" trong các ô ngày thứ 7 và chủ nhật */
 .calendar-cell {
-  position: relative; /* Cần thêm position: relative để có thể căn chỉnh chữ "Off" */
+  position: relative;
+  /* Cần thêm position: relative để có thể căn chỉnh chữ "Off" */
 }
 
 .calendar-cell:not(.other-month) {
   background-color: #ffffff;
-  color: #333; /* Chữ màu đen cho ngày trong tháng */
+  color: #333;
+  /* Chữ màu đen cho ngày trong tháng */
 }
 
 .off-label {
-  position: absolute; /* Đặt vị trí tuyệt đối cho chữ "Off" */
-  top: 5px; /* Cách cạnh trên 5px */
-  left: 5px; /* Cách cạnh trái 5px */
-  background-color: #ff4747; /* Màu nền cho chữ Off */
-  color: white; /* Màu chữ trắng */
-  font-size: 0.8rem; /* Kích thước chữ */
-  padding: 2px 5px; /* Khoảng cách giữa chữ và viền */
-  border-radius: 4px; /* Viền bo tròn */
+  position: absolute;
+  /* Đặt vị trí tuyệt đối cho chữ "Off" */
+  top: 5px;
+  /* Cách cạnh trên 5px */
+  left: 5px;
+  /* Cách cạnh trái 5px */
+  background-color: #ff4747;
+  /* Màu nền cho chữ Off */
+  color: white;
+  /* Màu chữ trắng */
+  font-size: 0.8rem;
+  /* Kích thước chữ */
+  padding: 2px 5px;
+  /* Khoảng cách giữa chữ và viền */
+  border-radius: 4px;
+  /* Viền bo tròn */
 }
 
 .off-sang {
   position: absolute;
   top: 5px;
   left: 5px;
-  background-color: #ffeb3b; /* Màu vàng sáng cho off sáng */
-  color: #000; /* Màu chữ đen */
+  background-color: #ffeb3b;
+  /* Màu vàng sáng cho off sáng */
+  color: #000;
+  /* Màu chữ đen */
   font-size: 0.8rem;
   padding: 2px 5px;
-  border-radius: 4px; /* Viền bo tròn */
+  border-radius: 4px;
+  /* Viền bo tròn */
 }
 
 .off-chieu {
   position: absolute;
   top: 5px;
   left: 5px;
-  background-color: #ff9800; /* Màu cam cho off chiều */
-  color: #fff; /* Màu chữ trắng */
+  background-color: #ff9800;
+  /* Màu cam cho off chiều */
+  color: #fff;
+  /* Màu chữ trắng */
   font-size: 0.8rem;
   padding: 2px 5px;
-  border-radius: 4px; /* Viền bo tròn */
+  border-radius: 4px;
+  /* Viền bo tròn */
 }
 
 .nghi {
   position: absolute;
   top: 5px;
   left: 5px;
-  background-color: #9e9e9e; /* Màu xám cho nghỉ */
-  color: #fff; /* Màu chữ trắng */
+  background-color: #9e9e9e;
+  /* Màu xám cho nghỉ */
+  color: #fff;
+  /* Màu chữ trắng */
   font-size: 0.8rem;
   padding: 2px 5px;
-  border-radius: 4px; /* Viền bo tròn */
+  border-radius: 4px;
+  /* Viền bo tròn */
 }
 
 .di-muon {
   position: absolute;
   top: 5px;
   left: 5px;
-  background-color: #f44336; /* Màu đỏ cho đi muộn */
-  color: #fff; /* Màu chữ trắng */
+  background-color: #f44336;
+  /* Màu đỏ cho đi muộn */
+  color: #fff;
+  /* Màu chữ trắng */
   font-size: 0.8rem;
   padding: 2px 5px;
-  border-radius: 4px; /* Viền bo tròn */
+  border-radius: 4px;
+  /* Viền bo tròn */
 }
 
 .ve-som {
   position: absolute;
   top: 5px;
   left: 5px;
-  background-color: #4caf50; /* Màu xanh lá cho về sớm */
-  color: #fff; /* Màu chữ trắng */
+  background-color: #4caf50;
+  /* Màu xanh lá cho về sớm */
+  color: #fff;
+  /* Màu chữ trắng */
   font-size: 0.8rem;
   padding: 2px 5px;
-  border-radius: 4px; /* Viền bo tròn */
+  border-radius: 4px;
+  /* Viền bo tròn */
 }
 
 .send-request-container {
-  position: absolute; 
-  bottom: 20px; /* Cách đáy của calendar 20px */
-  right: 20px; /* Cách cạnh phải của calendar 20px */
+  position: absolute;
+  bottom: 20px;
+  /* Cách đáy của calendar 20px */
+  right: 20px;
+  /* Cách cạnh phải của calendar 20px */
 }
 
 
 .send-request-btn {
-  background-color: #4caf50; /* Màu xanh lá cho nút */
-  color: white; /* Màu chữ trắng */
-  border: none; /* Bỏ viền */
-  padding: 10px 20px; /* Khoảng cách bên trong nút */
-  font-size: 16px; /* Kích thước chữ */
-  cursor: pointer; /* Con trỏ chuột thành hình tay */
-  border-radius: 5px; /* Bo tròn viền */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ cho nút */
-  transition: background-color 0.3s; /* Hiệu ứng chuyển màu khi hover */
+  background-color: #4caf50;
+  /* Màu xanh lá cho nút */
+  color: white;
+  /* Màu chữ trắng */
+  border: none;
+  /* Bỏ viền */
+  padding: 10px 20px;
+  /* Khoảng cách bên trong nút */
+  font-size: 16px;
+  /* Kích thước chữ */
+  cursor: pointer;
+  /* Con trỏ chuột thành hình tay */
+  border-radius: 5px;
+  /* Bo tròn viền */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Đổ bóng nhẹ cho nút */
+  transition: background-color 0.3s;
+  /* Hiệu ứng chuyển màu khi hover */
 }
 
 .send-request-btn:hover {
-  background-color: #45a049; /* Màu xanh lá đậm khi hover */
+  background-color: #45a049;
+  /* Màu xanh lá đậm khi hover */
 }
 
 
+/* 
+.floating-form {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+} */
 
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.floating-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 25px 30px;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.floating-form.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.floating-form h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+}
+
+.floating-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555;
+  font-weight: 600;
+}
+
+.floating-form input,
+.floating-form textarea,
+.floating-form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background: #f9f9f9;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.floating-form input:focus,
+.floating-form textarea:focus,
+.floating-form select:focus {
+  border-color: #007bff;
+  background-color: #fff;
+  outline: none;
+}
+
+.floating-form .form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.floating-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #fff;
+  background-color: #007bff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-form button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.floating-form .close-btn {
+  background-color: #ff4747;
+  margin-left: 10px;
+}
+
+.floating-form .close-btn:hover {
+  background-color: #d93434;
+}
