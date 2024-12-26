@@ -12,14 +12,14 @@ import moment from 'moment';
 })
 export class MyRequestComponent {
   daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  calendarDays: { day: string, isCurrentMonth: boolean }[][] = []; // Updated type
+  calendarDays: { day: string, isCurrentMonth: boolean, status: string }[][] = []; // Cập nhật kiểu dữ liệu
   currentMonth!: number;
   currentYear!: number;
   selectedYear!: number;
   selectedMonth!: number;
   months = Array.from({ length: 12 }, (_, i) => ({ value: i, name: (i + 1).toString() }));
   years: number[] = [];
-
+  
   ngOnInit(): void {
     const today = new Date();
     this.currentMonth = today.getMonth();
@@ -50,14 +50,15 @@ export class MyRequestComponent {
     const daysInMonth = lastDayOfMonth.date();
     const startDayOfWeek = firstDayOfMonth.day();
 
-    let days: { day: string, isCurrentMonth: boolean }[] = [];
+    let days: { day: string, isCurrentMonth: boolean, status: string }[] = [];
     const lastDayOfPrevMonth = firstDayOfMonth.clone().subtract(1, 'months').endOf('month').date();
 
     // Add previous month's days
     for (let i = startDayOfWeek - 1; i >= 0; i--) {
       days.push({
         day: firstDayOfMonth.clone().subtract(1, 'months').date(lastDayOfPrevMonth - i).format('YYYY-MM-DD'),
-        isCurrentMonth: false
+        isCurrentMonth: false,
+        status: ''
       });
     }
 
@@ -65,7 +66,8 @@ export class MyRequestComponent {
     for (let day = 1; day <= daysInMonth; day++) {
       days.push({
         day: firstDayOfMonth.clone().date(day).format('YYYY-MM-DD'),
-        isCurrentMonth: true
+        isCurrentMonth: true,
+        status: ''
       });
     }
 
@@ -74,7 +76,8 @@ export class MyRequestComponent {
     while (days.length < 35) {
       days.push({
         day: firstDayOfMonth.clone().add(1, 'months').date(nextMonthDay++).format('YYYY-MM-DD'),
-        isCurrentMonth: false
+        isCurrentMonth: false,
+        status: ''
       });
     }
 
@@ -98,4 +101,42 @@ export class MyRequestComponent {
   getCurrentMonthString(): string {
     return moment([this.selectedYear, this.selectedMonth]).format('YYYY-MM');
   }
+
+  handleClick(day: string): void {
+    const date = moment(day, 'YYYY-MM-DD');
+    const dayOfWeek = date.day();
+    const currentDate = moment();
+
+    // Kiểm tra ngày có phải >= ngày hiện tại và không phải cuối tuần
+    if (date.isSameOrAfter(currentDate, 'day') && dayOfWeek >= 1 && dayOfWeek <= 5) {
+      const dayIndex = this.findDayIndex(day);
+      if (dayIndex !== -1) {
+        const dayStatus = this.calendarDays.flat().find(item => item.day === day)?.status;
+
+        const statuses = ['off-sang', 'off-chieu', 'nghi', 'di-muon', 've-som'];
+        const nextStatus = statuses[(statuses.indexOf(dayStatus || 'off-sang') + 1) % statuses.length];
+
+        // Cập nhật trạng thái của ô
+        if (dayIndex !== -1) {
+          this.calendarDays.flat()[dayIndex].status = nextStatus;
+        }
+      }
+    }
+  }
+
+  // Tìm chỉ mục của ngày trong calendarDays
+  findDayIndex(day: string): number {
+    for (let i = 0; i < this.calendarDays.length; i++) {
+      const index = this.calendarDays[i].findIndex(d => d.day === day);
+      if (index !== -1) {
+        return i * 7 + index;
+      }
+    }
+    return -1;
+  }
+
+  sendRequest() {
+    console.log('Send Request clicked!');
+  }
+
 }

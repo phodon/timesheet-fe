@@ -1,1 +1,50 @@
-<p>request works!</p>
+<div>
+    <!-- Dropdown bộ lọc -->
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter" (change)="onStatusChange($event)">
+      <option value="">All</option>
+      <option value="Approvel">Approvel</option>
+      <option value="Pending">Pending</option>
+    </select>
+  </div>
+  
+  <div>
+    <!-- Danh sách request -->
+    <table>
+      <thead>
+        <tr>
+            <th>FullName</th>
+            <th>TypeName</th>
+          <th>Reason</th>
+          <th>Created At</th>
+          <th>Hours</th>
+          <th>Date</th>
+          <th>Status</th>
+          
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of requests">
+            <td>{{ request.FullName }}</td>
+          <td>{{ request.TypeName }}</td>
+          <td>{{ request.Reason }}</td>
+          <td>{{ request.CreatedAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ request.Hours }}</td>
+          <td>{{ request.Date }}</td>
+          <td>
+            <button 
+              [ngClass]="{
+                'btn-approvel': request.Status === 'Approvel',
+                'btn-pending': request.Status === 'Pending'
+              }"
+              (click)="onStatusClick(request)"
+            >
+              {{ request.Status }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

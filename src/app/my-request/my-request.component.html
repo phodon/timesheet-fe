@@ -40,11 +40,20 @@
         class="calendar-cell"
         *ngFor="let day of week"
         [class.other-month]="!day.isCurrentMonth"
+        (click)="handleClick(day.day)"
       >
-        <!-- Display "OFF" if it's a weekend (Saturday or Sunday) -->
+        <!-- Hiển thị trạng thái -->
         <div *ngIf="isWeekend(day.day)" class="off-label">OFF</div>
+        <div *ngIf="day.status" [ngClass]="day.status">
+          {{ day.status | uppercase }}
+        </div>
         {{ extractDay(day.day) }}
       </div>
     </div>
+  </div>
+  <div class="send-request-container">
+    <button class="send-request-btn" (click)="sendRequest()">
+      Send Request
+    </button>
   </div>
 </div>

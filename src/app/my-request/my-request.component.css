@@ -109,3 +109,83 @@ select:focus {
   border-radius: 4px; /* Viền bo tròn */
 }
 
+.off-sang {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #ffeb3b; /* Màu vàng sáng cho off sáng */
+  color: #000; /* Màu chữ đen */
+  font-size: 0.8rem;
+  padding: 2px 5px;
+  border-radius: 4px; /* Viền bo tròn */
+}
+
+.off-chieu {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #ff9800; /* Màu cam cho off chiều */
+  color: #fff; /* Màu chữ trắng */
+  font-size: 0.8rem;
+  padding: 2px 5px;
+  border-radius: 4px; /* Viền bo tròn */
+}
+
+.nghi {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #9e9e9e; /* Màu xám cho nghỉ */
+  color: #fff; /* Màu chữ trắng */
+  font-size: 0.8rem;
+  padding: 2px 5px;
+  border-radius: 4px; /* Viền bo tròn */
+}
+
+.di-muon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #f44336; /* Màu đỏ cho đi muộn */
+  color: #fff; /* Màu chữ trắng */
+  font-size: 0.8rem;
+  padding: 2px 5px;
+  border-radius: 4px; /* Viền bo tròn */
+}
+
+.ve-som {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #4caf50; /* Màu xanh lá cho về sớm */
+  color: #fff; /* Màu chữ trắng */
+  font-size: 0.8rem;
+  padding: 2px 5px;
+  border-radius: 4px; /* Viền bo tròn */
+}
+
+.send-request-container {
+  position: absolute; 
+  bottom: 20px; /* Cách đáy của calendar 20px */
+  right: 20px; /* Cách cạnh phải của calendar 20px */
+}
+
+
+.send-request-btn {
+  background-color: #4caf50; /* Màu xanh lá cho nút */
+  color: white; /* Màu chữ trắng */
+  border: none; /* Bỏ viền */
+  padding: 10px 20px; /* Khoảng cách bên trong nút */
+  font-size: 16px; /* Kích thước chữ */
+  cursor: pointer; /* Con trỏ chuột thành hình tay */
+  border-radius: 5px; /* Bo tròn viền */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ cho nút */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu khi hover */
+}
+
+.send-request-btn:hover {
+  background-color: #45a049; /* Màu xanh lá đậm khi hover */
+}
+
+
+

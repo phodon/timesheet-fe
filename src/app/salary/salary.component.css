@@ -1,0 +1,99 @@
+/* Đặt màu xanh nước biển làm màu chủ đạo */
+:root {
+    --main-color: #1E90FF; /* Màu xanh nước biển */
+  }
+  
+  /* Thiết kế bảng để full màn hình */
+  .table-responsive {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%; /* Đảm bảo bảng chiếm hết chiều rộng */
+    table-layout: fixed; /* Tự động phân chia đều các cột */
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+  
+  /* Tạo viền cho bảng đẹp hơn */
+  table.table-bordered {
+    border-collapse: collapse;
+  }
+  
+  table.table-bordered th,
+  table.table-bordered td {
+    border: 1px solid #ddd;
+  }
+  
+  /* Đổi màu header bảng */
+  thead.table-dark {
+    background-color: #1E90FF;
+    color: white;
+  }
+  
+  /* Thay đổi màu cho các phần tử form */
+  .form-label {
+    font-size: 16px;
+  }
+  
+  .form-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  button.btn-success {
+    background-color: #1E90FF; /* Màu xanh nước biển cho nút */
+    border-color: #1E90FF;
+    color: white;
+    font-size: 16px;
+  }
+  
+  button.btn-success:hover {
+    background-color: #1c7ed6; /* Màu xanh đậm khi hover */
+    border-color: #1c7ed6;
+  }
+  
+  /* Chỉnh layout cho các dropdown và nút */
+  .row.mb-4 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .col-md-6 {
+    flex: 1 1 48%; /* Đảm bảo các cột đều chiếm không gian và không bị thu hẹp */
+  }
+  
+  /* Điều chỉnh khoảng cách và căn giữa tiêu đề */
+  h1.text-center {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #1E90FF;
+  }
+  
+  /* Cải thiện giao diện tổng thể */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .text-end {
+    text-align: right;
+  }
+  
+  /* Responsive: Khi màn hình nhỏ, dropdown và nút sẽ xếp theo cột */
+  @media (max-width: 768px) {
+    .col-md-6 {
+      flex: 1 1 100%;
+    }
+  }
+  
