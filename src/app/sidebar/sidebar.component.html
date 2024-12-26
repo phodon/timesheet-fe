@@ -13,7 +13,7 @@
   </nz-collapse-panel>
 
   <!-- Admin (With sub-options) -->
-  <nz-collapse-panel nzHeader="Admin" [nzShowArrow]="true">
+  <nz-collapse-panel *ngIf="role === 1" nzHeader="Admin" [nzShowArrow]="true">
     <ul>
       <li><a routerLink="/home/users">Users</a></li>
       <li><a routerLink="/home/role">Role</a></li>
@@ -21,7 +21,7 @@
   </nz-collapse-panel>
 
   <!-- Management (With sub-options) -->
-  <nz-collapse-panel nzHeader="Management" [nzShowArrow]="true">
+  <nz-collapse-panel *ngIf="role === 1" nzHeader="Management" [nzShowArrow]="true">
     <ul>
       <li><a routerLink="/home/project">Project</a></li>
       <li><a routerLink="/home/request">Request</a></li>
