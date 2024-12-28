@@ -1,3 +1,4 @@
+/* Phần CSS hiện tại của bạn */
 .table {
   border-collapse: collapse;
   width: 140%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
@@ -22,6 +23,7 @@ h2 {
   background-color: #f0f8ff; /* Màu nổi bật khi di chuột qua */
 }
 
+/* Modal Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -138,4 +140,247 @@ h2 {
   background-color: #5a6268;
 }
 
-  
+/* Phần bổ sung cho modal (Add/Remove Member) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Đảm bảo nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Đảm bảo modal luôn hiển thị trên cùng */
+}
+
+.modal-dialog {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header .modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-header .close {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+  border: none;
+  background: none;
+}
+
+.modal-header .close:hover {
+  color: #000;
+}
+
+.modal-body {
+  margin-top: 20px;
+}
+
+.modal-body label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.modal-body select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.modal-body select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.modal-footer .btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #f8f9fa;
+  color: #333;
+  border: none;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #e2e6ea;
+}
+
+.modal-footer .btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+.modal-footer .btn-success:hover {
+  background-color: #218838;
+}
+
+.modal-footer .btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+}
+
+.modal-footer .btn-danger:hover {
+  background-color: #c82333;
+}
+
+
+/* Nút "Add Member" */
+.btn-success {
+  background-color: #28a745; /* Màu nền xanh lá */
+  color: white;
+  padding: 5px 10px; /* Khoảng cách trong nút */
+  font-size: 0.875rem; /* Cỡ chữ nhỏ */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Màu nền khi hover */
+}
+
+/* Nút "Remove Member" */
+.btn-danger {
+  background-color: #dc3545; /* Màu nền đỏ */
+  color: white;
+  padding: 5px 10px; /* Khoảng cách trong nút */
+  font-size: 0.875rem; /* Cỡ chữ nhỏ */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #c82333; /* Màu nền khi hover */
+}
+
+/* Cải thiện giao diện cho các nút bên trong table */
+td button {
+  margin-right: 10px; /* Khoảng cách giữa hai nút */
+  display: inline-block; /* Đảm bảo các nút nằm ngang */
+}
+
+td button:last-child {
+  margin-right: 0; /* Xóa khoảng cách ở nút cuối cùng */
+}
+
+/* Phần tử div chứa input */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Label cho input */
+.mb-4 label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Input group container */
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Input text */
+.input-group .form-control {
+  width: 30%; /* Thu hẹp chiều rộng của ô nhập liệu */
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+/* Đổi màu viền khi focus */
+.input-group .form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.input-group {
+  display: flex; /* Đảm bảo input và button ở cùng một hàng */
+  align-items: center;
+  width: 100%;
+  gap: 0; /* Loại bỏ khoảng cách giữa các phần tử */
+}
+
+/* Input text */
+.input-group .form-control {
+  width: 80%; /* Giảm chiều rộng của ô nhập liệu */
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+  margin: 0; /* Loại bỏ khoảng cách của input */
+}
+
+/* Đổi màu viền khi focus */
+.input-group .form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Nút search */
+.input-group .btn {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0; /* Loại bỏ khoảng cách của button */
+}
+
+/* Thay đổi màu khi hover */
+.input-group .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Đảm bảo input và button đều ở cùng một hàng */
+.input-group .form-control, .input-group .btn {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+

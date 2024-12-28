@@ -1,23 +1,74 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Chiều cao tối thiểu bằng chiều cao màn hình */
+  padding: 15px;
+  background-color: #f4f4f4; /* Màu nền nhẹ nhàng */
+}
+
 .login-container {
-    max-width: 400px;
-    margin: auto;
-    margin-top: 10%;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-  }
-  .error-message {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .btn-primary:hover {
-    font-weight: bold;
-  }
-  .form-label {
-    font-weight: bold;
-  }
-  
-  
+  width: 100%;
+  max-width: 400px; /* Giới hạn chiều rộng tối đa */
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Tăng độ sâu */
+  background-color: #ffffff;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px; /* Tăng khoảng cách dưới tiêu đề */
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Tăng khoảng cách giữa các trường nhập */
+}
+
+.form-label {
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.form-control {
+  width: 100%;
+  border-radius: 8px; /* Làm mềm góc cạnh */
+  padding: 12px; /* Kích thước padding hợp lý */
+  font-size: 14px; /* Chữ to vừa đủ dễ đọc */
+  border: 1px solid #ccc; /* Viền nhẹ */
+  transition: border-color 0.3s ease; /* Hiệu ứng hover */
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Tăng hiệu ứng tập trung */
+}
+
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  width: 100%; /* Đặt nút chiếm toàn chiều rộng */
+  padding: 12px; /* Tăng kích thước nút */
+  font-size: 16px; /* Chữ lớn hơn */
+  font-weight: bold;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.02); /* Hiệu ứng mở rộng nhẹ khi hover */
+}

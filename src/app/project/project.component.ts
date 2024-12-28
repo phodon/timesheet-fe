@@ -3,6 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 
+interface User {
+  Id: number;
+  FullName: string;
+}
+
 @Component({
   selector: 'app-project',
   standalone: true,
@@ -10,6 +15,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
+
 export class ProjectComponent {
   newProject: any = {
     ProjectName: '',
@@ -24,6 +30,13 @@ export class ProjectComponent {
   detailedProject: any = null; // Lưu thông tin chi tiết của dự án
   showDetailsModal: boolean = false; // Điều khiển hiển thị modal chi tiết
   selectedProject: any = null;
+
+  showAddBox: boolean = false;
+  showRemoveBox: boolean = false;
+  selectedUserToAdd: string = '';
+  selectedUserToRemove: string = '';
+  projectMembers: any[] = []; // Load members of the selected project
+  users: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -172,4 +185,142 @@ export class ProjectComponent {
       );
   }
 
+  openAddBox(project: any, event: Event): void {
+      event.stopPropagation(); // Prevent triggering row click
+      this.selectedProject = project;
+      this.showAddBox = true;
+    
+      const accessToken = localStorage.getItem('accessToken'); // Lấy token từ localStorage
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': `Bearer ${accessToken}`
+      });
+    
+      const projectId = project.Id; // ID của dự án
+    
+      this.http.get<any>(`http://localhost:8080/api/user/getAllUserNotInProject/${projectId}`, { headers })
+        .subscribe(
+          (response) => {
+            console.log('API Response:', response);  // Kiểm tra dữ liệu trả về
+            
+            if (response && response.status === 'Success' && Array.isArray(response.data)) {
+              this.projectMembers = response.data.map((user: User) => ({ id: user.Id, name: user.FullName }));
+              console.log(this.projectMembers);
+            } else {
+              console.error('Invalid response format or empty data:', response);
+            }
+          },
+          (error) => {
+            console.error('Error fetching users:', error);
+          }
+        );
+  }
+
+  
+  // Close Add Member box
+  closeAddBox(): void {
+    this.showAddBox = false;
+  }
+  
+  // Open Remove Member box
+  openRemoveBox(project: any, event: Event): void {
+    event.stopPropagation(); // Ngăn sự kiện click trên hàng
+    this.selectedProject = project;
+    this.showRemoveBox = true;
+  
+    const accessToken = localStorage.getItem('accessToken'); // Lấy token từ localStorage
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': `Bearer ${accessToken}`
+    });
+  
+    const projectId = project.Id; // ID của dự án
+  
+    this.http.get<any>(`http://localhost:8080/api/user/getAllUserInProject/${projectId}`, { headers })
+        .subscribe(
+          (response) => {
+            console.log('API Response:', response);  // Kiểm tra dữ liệu trả về
+            
+            if (response && response.status === 'Success' && Array.isArray(response.data)) {
+              this.projectMembers = response.data.map((user: User) => ({ id: user.Id, name: user.FullName }));
+              console.log(this.projectMembers);
+            } else {
+              console.error('Invalid response format or empty data:', response);
+            }
+          },
+          (error) => {
+            console.error('Error fetching users:', error);
+          }
+        );
+  }
+  
+  // Close Remove Member box
+  closeRemoveBox(): void {
+    this.showRemoveBox = false;
+  }
+  
+  // Add Member
+  addMember(): void {
+    if (this.selectedUserToAdd) {
+      const accessToken = localStorage.getItem('accessToken'); // Lấy token từ localStorage
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': `Bearer ${accessToken}`
+      });
+  
+      const body = {
+        projectId: this.selectedProject.Id,
+        userId: this.selectedUserToAdd,
+      };
+  
+      this.http.post<any>(`http://localhost:8080/api/project/addUsersToProject`, body, { headers })
+        .subscribe(
+          (response) => {
+            if (response.status === 'Success') {
+              console.log(`User ${this.selectedUserToAdd} added to project ${this.selectedProject.ProjectName}`);
+              this.closeAddBox(); // Đóng box sau khi thêm thành viên
+            } else {
+              console.error('Failed to add member:', response);
+            }
+            alert(response.message);
+          },
+          (error) => {
+            console.error('Error adding user:', error);
+          }
+        );
+    }
+  }
+  
+  // Remove Member
+  removeMember(): void {
+    if (this.selectedUserToRemove) {
+      const accessToken = localStorage.getItem('accessToken'); // Lấy token từ localStorage
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': `Bearer ${accessToken}`
+      });
+  
+      const body = {
+        projectId: this.selectedProject.Id,
+        userId: this.selectedUserToRemove,
+      };
+  
+      this.http.post<any>(`http://localhost:8080/api/project/removeUsersToProject`, body, { headers })
+        .subscribe(
+          (response) => {
+            if (response.status === 'Success') {
+              console.log(`User ${this.selectedUserToRemove} removed from project ${this.selectedProject.ProjectName}`);
+              this.closeRemoveBox(); // Đóng box sau khi loại bỏ thành viên
+            } else {
+              console.error('Failed to remove member:', response);
+            }
+            alert(response.message);
+          },
+          (error) => {
+            console.error('Error removing user:', error);
+          }
+        );
+    }
+
+  }
 }

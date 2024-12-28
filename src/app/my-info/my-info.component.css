@@ -1,74 +1,96 @@
+/* Container tổng thể */
 .user-info-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    
+  width: 60%; /* Chiếm 60% màn hình để giảm dư thừa */
+  margin-left: 35%; /* Đẩy nội dung gần về giữa, cách sidebar một khoảng hợp lý */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out; /* Mượt mà khi thay đổi kích thước */
+}
+
+/* Tiêu đề */
+.user-info-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Layout dạng grid */
+.user-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Các cột linh hoạt với chiều rộng nhỏ hơn */
+  gap: 15px;
+}
+
+/* Các trường form */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.form-group span {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Nhóm hành động */
+.action-group {
+  grid-column: span 2; /* Nút lưu chiếm hết một hàng */
+  text-align: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Đảm bảo cân đối trên các màn hình */
+@media (max-width: 1200px) {
+  .user-info-container {
+    width: 70%; /* Nới rộng trên màn hình nhỏ hơn */
+    margin-left: 30%; /* Điều chỉnh khoảng cách */
   }
-  
-  .user-info-container h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .user-info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group label {
-    font-size: 14px;
-    color: #666;
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
+}
+
+@media (max-width: 768px) {
+  .user-info-container {
+    width: 90%;
+    margin-left: 5%; /* Gần sát viền để hiển thị tối đa */
     padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    color: #333;
-    transition: border-color 0.3s;
   }
-  
-  .form-group input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .form-group span {
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .action-group {
-    text-align: center;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
-  
+}

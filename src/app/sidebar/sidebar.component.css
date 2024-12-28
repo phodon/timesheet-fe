@@ -1,68 +1,78 @@
-/* Đặt kiểu chữ chung cho tất cả các mục trong nz-collapse */
-.nz-collapse .nz-collapse-header,
-.collapse-panel-link {
-  font-size: 16px; /* Kích thước chữ đồng nhất */
-  font-weight: 400; /* Đặt độ đậm đồng nhất */
-  color: #333; /* Màu chữ */
-  padding: 16px; /* Khoảng cách đều */
+/* Tổng thể sidebar */
+.sidebar {
+  width: 30%; /* Sidebar chiếm 3/10 chiều ngang */
+  max-width: 400px; /* Đặt chiều rộng tối đa nếu cần */
+  min-width: 200px; /* Đặt chiều rộng tối thiểu nếu cần */
+  background-color: #f8f9fa; /* Màu nền sáng */
+  height: 100vh; /* Chiều cao chiếm toàn bộ màn hình */
+  padding: 16px; /* Thêm khoảng cách bên trong */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Khoảng cách giữa các mục */
 }
 
-.nz-collapse .nz-collapse-header:hover,
-.collapse-panel-link:hover {
-  background-color: #e6f7ff; /* Hiệu ứng hover */
+/* My Information căn chỉnh như các mục khác */
+.sidebar .collapse-panel-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: #007bff; /* Màu xanh lam hiện đại */
+  padding: 12px 16px; /* Khoảng cách bên trong đồng đều */
+  border-radius: 4px; /* Bo góc mềm mại */
+  background-color: #e9ecef; /* Màu nền nhạt */
+  transition: background-color 0.3s, color 0.3s; /* Hiệu ứng hover */
+  text-align: left; /* Căn trái */
 }
 
-/* Đảm bảo khoảng cách dưới các mục có border */
-.collapse-panel-link,
-.nz-collapse .nz-collapse-header {
-  border-bottom: 1px solid #f0f0f0;
+/* Hover cho My Information */
+.sidebar .collapse-panel-link:hover {
+  background-color: #dee2e6; /* Màu nền khi hover */
+  color: #0056b3; /* Màu chữ khi hover */
 }
-/* Xóa dấu chấm trong danh sách */
+
+/* Collapse Panel */
+.nz-collapse {
+  flex: 1; /* Đảm bảo sidebar chiếm chiều cao tối đa */
+}
+
+.nz-collapse-panel {
+  margin-bottom: 0; /* Xóa khoảng cách dư thừa */
+}
+
+.nz-collapse-panel .ant-collapse-header {
+  font-size: 16px;
+  font-weight: bold;
+  color: #212529;
+  padding: 12px 16px; /* Đồng bộ padding */
+  border-radius: 4px;
+  background-color: #e9ecef;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nz-collapse-panel .ant-collapse-header:hover {
+  background-color: #dee2e6;
+  color: #495057;
+}
+
+/* Các liên kết bên trong Collapse Panel */
 ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Thêm khoảng cách và trang trí cho các phần tử li */
-ul li {
-  margin: 4px 0;
-}
-
-/* Thêm kiểu dáng cho các liên kết a */
 ul li a {
   text-decoration: none;
-  color: #007bff; /* Màu xanh lam cho liên kết */
-  font-size: 16px;
+  color: #007bff;
+  font-size: 15px;
   font-weight: 500;
   display: block;
-  padding: 4px;
+  padding: 8px 16px; /* Đồng bộ padding */
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Màu nền thay đổi khi hover */
 ul li a:hover {
-  background-color: #f0f0f0;
+  background-color: #e2f0ff;
   color: #0056b3;
-}
-
-/* Thêm khoảng cách giữa các collapse panel */
-.nz-collapse-panel {
-  margin-bottom: 10px;
-}
-
-/* Tăng độ nổi bật của phần tiêu đề collapse */
-.nz-collapse-panel .ant-collapse-header {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  padding: 10px;
-}
-
-/* Tăng chiều cao cho các collapse panel */
-.nz-collapse-panel .ant-collapse-content {
-  padding: 10px;
 }

@@ -258,94 +258,104 @@ select:focus {
   font-size: 0.9rem;
 }
 
+/* Cấu trúc chung của form */
 .floating-form {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #ffffff;
-  border: none;
-  border-radius: 12px;
-  padding: 25px 30px;
-  z-index: 1000;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
+  width: 80%;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: none; /* Ẩn mặc định */
+  z-index: 1050; /* Đảm bảo form nổi bật */
 }
 
+/* Hiển thị form khi có class 'active' */
 .floating-form.active {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-  visibility: visible;
+  display: block;
 }
 
-.floating-form h3 {
-  margin-bottom: 20px;
+/* Tiêu đề của form */
+.form-header {
   font-size: 1.5rem;
-  color: #333;
-  text-align: center;
   font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
 }
 
+/* Cấu trúc các trường nhập liệu */
 .floating-form label {
   display: block;
-  margin-bottom: 8px;
-  font-size: 1rem;
-  color: #555;
   font-weight: 600;
+  color: #555;
+  margin-top: 10px;
 }
 
-.floating-form input,
-.floating-form textarea,
-.floating-form select {
+.floating-form select,
+.floating-form input[type="text"],
+.floating-form input[type="number"] {
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
+  padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 1rem;
-  color: #333;
-  background: #f9f9f9;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  margin-top: 5px;
+  transition: border-color 0.2s;
 }
 
-.floating-form input:focus,
-.floating-form textarea:focus,
-.floating-form select:focus {
+/* Khi input hoặc select được focus */
+.floating-form select:focus,
+.floating-form input:focus {
   border-color: #007bff;
-  background-color: #fff;
   outline: none;
 }
 
-.floating-form .form-actions {
+/* Thông báo lỗi */
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+/* Cấu trúc phần footer */
+.form-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
-.floating-form button {
+/* Nút Confirm */
+.confirm-btn,
+.cancel-btn {
   padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
   font-size: 1rem;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  color: #fff;
-  background-color: #007bff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.floating-form button:hover {
-  background-color: #0056b3;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.floating-form .close-btn {
-  background-color: #ff4747;
+  transition: background-color 0.3s;
   margin-left: 10px;
 }
 
-.floating-form .close-btn:hover {
-  background-color: #d93434;
+/* Nút Confirm */
+.confirm-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Nút Cancel */
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
 }

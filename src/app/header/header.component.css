@@ -1,9 +1,38 @@
+/* Định dạng cho header */
 .header {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ cho header */
+  background-color: #4a90e2; /* Màu nền header đẹp (màu xanh dương nhẹ) */
+  border-bottom: 1px solid #357ab7; /* Viền dưới màu xanh đậm */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng nhẹ cho header */
+  padding: 10px 20px; /* Padding cho header */
+  display: flex;
+  justify-content: space-between; /* Căn giữa các phần tử bên trong */
+  align-items: center; /* Căn giữa theo chiều dọc */
 }
 
-.logout:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng khi hover vào phần logout */
-  border-radius: 4px; /* Bo góc nhẹ cho phần logout */
-  padding: 5px;
+/* Định dạng cho tên dự án */
+.timesheet-title {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #ffffff; /* Màu chữ trắng cho tên dự án */
+}
+
+/* Định dạng cho phần Logout */
+.logout-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #ffffff; /* Màu chữ trắng cho Logout */
+  margin-right: 10px; /* Khoảng cách từ nút logout tới cạnh phải */
+}
+
+/* Biểu tượng Logout */
+.logout-container i {
+  font-size: 1rem; /* Kích thước biểu tượng nhỏ */
+  color: #ffffff; /* Màu biểu tượng trắng */
+}
+
+/* Chữ Logout */
+.logout-container span {
+  font-size: 1rem;
+  color: #ffffff; /* Màu chữ logout trắng */
 }

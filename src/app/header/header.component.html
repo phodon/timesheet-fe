@@ -1,7 +1,12 @@
-<header class="header d-flex justify-content-between align-items-center p-3 bg-primary text-white">
-  <h1 class="app-title mb-0">Timesheet App</h1>
-  <div class="logout d-flex align-items-center cursor-pointer" (click)="logout()">
-    <span class="me-2">Logout</span>
-    <img src="../../static/logout.png" alt="Logout Icon" class="logout-icon" width="20" height="20">
+<header class="header d-flex justify-content-between align-items-center p-3">
+  <!-- Tên dự án căn lề trái -->
+  <div class="timesheet-title">
+    <h1 class="h4 mb-0">Timesheet</h1>
+  </div>
+  
+  <!-- Nút Logout căn lề phải -->
+  <div class="logout-container" (click)="logout()">
+    <i class="bi bi-box-arrow-right me-2"></i> <!-- Biểu tượng Logout -->
+    <span>Logout</span>
   </div>
 </header>

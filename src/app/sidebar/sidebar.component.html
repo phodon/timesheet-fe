@@ -1,31 +1,33 @@
-<nz-collapse>
-  <!-- My Information (No sub-options, behaves like a simple link) -->
+<div class="sidebar">
+  <!-- My Information -->
   <div class="collapse-panel-link" [routerLink]="'/home/my-info'">
     My Information
   </div>
 
-  <!-- Personal Timesheet (With sub-options) -->
-  <nz-collapse-panel nzHeader="Personal Timesheet" [nzShowArrow]="true">
-    <ul>
-      <li><a routerLink="/home/my-timesheet">My Timesheet</a></li>
-      <li><a routerLink="/home/my-request">My Request</a></li>
-    </ul>
-  </nz-collapse-panel>
+  <!-- Personal Timesheet -->
+  <nz-collapse>
+    <nz-collapse-panel nzHeader="Personal Timesheet" [nzShowArrow]="false">
+      <ul>
+        <li><a routerLink="/home/my-timesheet">My Timesheet</a></li>
+        <li><a routerLink="/home/my-request">My Request</a></li>
+      </ul>
+    </nz-collapse-panel>
 
-  <!-- Admin (With sub-options) -->
-  <nz-collapse-panel *ngIf="role === 1" nzHeader="Admin" [nzShowArrow]="true">
-    <ul>
-      <li><a routerLink="/home/users">Users</a></li>
-      <li><a routerLink="/home/role">Role</a></li>
-    </ul>
-  </nz-collapse-panel>
+    <!-- Admin -->
+    <nz-collapse-panel *ngIf="role === 1" nzHeader="Admin" [nzShowArrow]="false">
+      <ul>
+        <li><a routerLink="/home/users">Users</a></li>
+        <li><a routerLink="/home/role">Role</a></li>
+      </ul>
+    </nz-collapse-panel>
 
-  <!-- Management (With sub-options) -->
-  <nz-collapse-panel *ngIf="role === 1" nzHeader="Management" [nzShowArrow]="true">
-    <ul>
-      <li><a routerLink="/home/project">Project</a></li>
-      <li><a routerLink="/home/request">Request</a></li>
-      <li><a routerLink="/home/salary">Salary</a></li>
-    </ul>
-  </nz-collapse-panel>
-</nz-collapse>
+    <!-- Management -->
+    <nz-collapse-panel *ngIf="role === 1" nzHeader="Management" [nzShowArrow]="false">
+      <ul>
+        <li><a routerLink="/home/project">Project</a></li>
+        <li><a routerLink="/home/request">Request</a></li>
+        <li><a routerLink="/home/salary">Salary</a></li>
+      </ul>
+    </nz-collapse-panel>
+  </nz-collapse>
+</div>

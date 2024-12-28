@@ -64,6 +64,18 @@ export class SalaryComponent {
         if (response.message === 'SalaryUser created successfully') {
           alert(`Success: ${response.message}`);
           this.salaryData = response.data; // Update the salaryData array with response data
+          this.salaryData = [
+            { DayReal: 21, Fee: 100000, SalaryReal: 9900000, Email: 'nguyen.anh@domain.com', FullName: 'Nguyễn Anh Tuấn' },
+            { DayReal: 21, Fee: 150000, SalaryReal: 9850000, Email: 'tran.thi@domain.com', FullName: 'Trần Thị Lan' },
+            { DayReal: 21, Fee: 150000, SalaryReal: 9850000, Email: 'le.quang@domain.com', FullName: 'Lê Quang Hieu' },
+            { DayReal: 21, Fee: 100000, SalaryReal: 12400000, Email: 'pham.dong@domain.com', FullName: 'Phạm Đông Tùng' },
+            { DayReal: 21, Fee: 200000, SalaryReal: 14800000, Email: 'hoang.mai@domain.com', FullName: 'Hoàng Mai Lan' },
+            { DayReal: 21, Fee: 50000, SalaryReal: 9500000, Email: 'vu.tuan@domain.com', FullName: 'Vũ Tuấn Anh' },
+            { DayReal: 21, Fee: 100000, SalaryReal: 9900000, Email: 'nguyen.bich@domain.com', FullName: 'Nguyễn Bích Thảo' },
+            { DayReal: 21, Fee: 0, SalaryReal: 10000000, Email: 'le.kim@domain.com', FullName: 'Lê Kim Dung' },
+            { DayReal: 21, Fee: 200000, SalaryReal: 9800000, Email: 'tran.quyen@domain.com', FullName: 'Trần Quyên Hoa' },
+            { DayReal: 21, Fee: 150000, SalaryReal: 9850000, Email: 'pham.thai@domain.com', FullName: 'Phạm Thái Nguyên' }
+          ];
           console.log('Salary data:', this.salaryData);
         } else {
           console.error('Failed to create salary user:', response);
