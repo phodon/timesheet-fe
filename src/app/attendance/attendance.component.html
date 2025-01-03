@@ -1,1 +1,85 @@
-<p>attendance works!</p>
+<div class="attendance-container">
+    <div class="header-container">
+        <h1>Attendance</h1>
+        <div class="dropdown-container">
+          <!-- Dropdown chọn năm -->
+          <div class="dropdown">
+            <label for="year">Year:</label>
+            <select
+              id="year"
+              [(ngModel)]="selectedYear"
+              (ngModelChange)="fetchAttendance()"
+            >
+              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+            </select>
+          </div>
+      
+          <!-- Dropdown chọn tháng -->
+          <div class="dropdown">
+            <label for="month">Month:</label>
+            <select
+              id="month"
+              [(ngModel)]="selectedMonth"
+              (ngModelChange)="fetchAttendance()"
+            >
+              <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+  
+    <!-- Bảng hiển thị dữ liệu -->
+    <table *ngIf="attendances.length > 0">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+          <th>Late Minutes</th>
+          <th>Early Leave Minutes</th>
+          <th>Working Hours</th>
+          <th>Request</th>
+          <th>Fee Money</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attendance of attendances">
+          <td>{{ attendance.Date }}</td>
+          <td>{{ attendance.CheckIn }}</td>
+          <td>{{ attendance.CheckOut }}</td>
+          <td
+            [ngStyle]="{
+              color: attendance.LateMinutes > 0 ? 'red' : 'green',
+              fontWeight: 'bold'
+            }"
+          >
+            {{ attendance.LateMinutes }}
+          </td>
+          <td
+            [ngStyle]="{
+              color: attendance.EarlyLeaveMinutes > 0 ? 'red' : 'green',
+              fontWeight: 'bold'
+            }"
+          >
+            {{ attendance.EarlyLeaveMinutes }}
+          </td>
+          <td>{{ attendance.WorkingHours }}</td>
+          <td>{{ requestIdMap[attendance.RequestId] }}</td>
+          <td
+            [ngStyle]="{
+              color: 'red',
+              fontWeight: 'bold'
+            }"
+          >
+            {{ attendance.FeeMoney }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Hiển thị nếu không có dữ liệu -->
+    <p *ngIf="attendances.length === 0 && isDataFetched">
+      Không có dữ liệu attendance cho tháng này.
+    </p>
+  </div>
+  

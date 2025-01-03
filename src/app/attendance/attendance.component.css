@@ -1,0 +1,109 @@
+.attendance-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 86vw; /* Chiều rộng tối đa của layout */
+    height: 35vh; /* Chiều cao của layout */
+    margin: 10px;
+    overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá lớn */
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: flex-start; /* Căn trái các phần tử trong header */
+    align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; /* Thêm font đẹp cho tiêu đề */
+  }
+  
+  .header-container h1 {
+    font-size: 2rem;
+    margin: 0;
+    flex-shrink: 0;
+    letter-spacing: 1px; /* Thêm khoảng cách giữa các chữ */
+  }
+  
+  .dropdown-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .dropdown {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa label và select */
+  }
+  
+  .dropdown label {
+    font-size: 1rem;
+    color: #333; /* Màu chữ tối cho label */
+    font-weight: 500;
+  }
+  
+  .dropdown select {
+    padding: 8px 12px;
+    border: 1px solid #ccc; /* Viền nhẹ cho dropdown */
+    border-radius: 5px; /* Bo góc cho dropdown */
+    background-color: #fff;
+    font-size: 1rem;
+    color: #333;
+    transition: all 0.3s ease; /* Hiệu ứng mượt khi tương tác */
+  }
+  
+  .dropdown select:hover {
+    border-color: #007bff; /* Đổi màu viền khi hover */
+    background-color: #f0f8ff; /* Nền màu sáng khi hover */
+  }
+  
+  .dropdown select:focus {
+    outline: none;
+    border-color: #0056b3; /* Màu viền đậm khi focus */
+    background-color: #e6f7ff; /* Nền sáng khi focus */
+  }
+  
+  
+  
+  table {
+    width: 100%; /* Chiếm toàn bộ chiều rộng của container */
+    border-collapse: collapse;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  table thead th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+  }
+  
+  table tbody td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+  }
+  
+  table tbody td[ngStyle] {
+    font-weight: bold;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  p {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
+    margin-top: 20px;
+  }
+  
