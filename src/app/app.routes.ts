@@ -11,6 +11,7 @@ import { RoleComponent } from './role/role.component';
 import { ProjectComponent } from './project/project.component';
 import { RequestComponent } from './request/request.component';
 import { SalaryComponent } from './salary/salary.component';
+import { DailyComponent } from './daily/daily.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,7 +31,8 @@ export const routes: Routes = [
           { path: 'users', component: UsersComponent },
           { path: 'role', component: RoleComponent },
           { path: 'project', component: ProjectComponent },
-          { path: 'request', component: RequestComponent }
+          { path: 'request', component: RequestComponent },
+          { path: 'daily', component: DailyComponent}
         ]
       }
     ]

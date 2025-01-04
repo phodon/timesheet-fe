@@ -184,3 +184,36 @@ h2 {
 .btn-secondary:hover {
   background-color: #5a6268;
 }
+
+/* Định dạng chung cho input */
+.input-group .form-control {
+  border: 2px solid #007BFF; /* Viền xanh */
+  border-radius: 5px 0 0 5px; /* Bo góc trái */
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group .form-control:focus {
+  border-color: #0056b3; /* Viền đậm hơn khi focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Định dạng nút search */
+.input-group .btn {
+  border: 2px solid #007BFF;
+  border-radius: 0 5px 5px 0; /* Bo góc phải */
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-group .btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+

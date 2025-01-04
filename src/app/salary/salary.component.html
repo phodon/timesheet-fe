@@ -1,54 +1,48 @@
-<div class="container mt-5">
-    <h1 class="text-center text-primary mb-4">Export Salary Data</h1>
-  
-    <!-- Filters -->
-    <div class="row mb-4">
+<div class="filters-container">
+  <h1 class="text-center text-primary mb-4">Export Salary Data</h1>
+  <div class="row mb-4">
       <div class="col-md-6">
-        <label for="year" class="form-label">Year:</label>
-        <select id="year" class="form-select" (change)="onYearChange($event)">
-          <option *ngFor="let year of years" [value]="year" [selected]="year === selectedYear">
-            {{ year }}
-          </option>
-        </select>
+          <label for="year" class="form-label">Year:</label>
+          <select id="year" class="form-select" (change)="onYearChange($event)">
+              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
       </div>
       <div class="col-md-6">
-        <label for="month" class="form-label">Month:</label>
-        <select id="month" class="form-select" (change)="onMonthChange($event)">
-          <option *ngFor="let month of months" [value]="month" [selected]="month === selectedMonth">
-            {{ month }}
-          </option>
-        </select>
+          <label for="month" class="form-label">Month:</label>
+          <select id="month" class="form-select" (change)="onMonthChange($event)">
+              <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+          </select>
       </div>
-    </div>
-  
-    <!-- Export Button -->
-    <div class="text-end mb-3">
+  </div>
+  <div class="text-end">
       <button class="btn btn-success" (click)="exportSalary()">Export</button>
       <button class="btn btn-primary" (click)="sendEmail()">Send Email</button>
-    </div>
-  
-    <!-- Table -->
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+  </div>
+</div>
+
+<div class="table-container">
+  <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover">
           <thead class="table-dark text-center">
-            <tr>
-              <th>STT</th> <!-- Cột STT -->
-              <th>Day</th>
-              <th>Fee</th>
-              <th>Salary</th>
-              <th>Email</th> <!-- Cột Email -->
-              <th>Full Name</th> <!-- Cột Full Name -->
-            </tr>
+              <tr>
+                  <th>STT</th>
+                  <th>Day</th>
+                  <th>Fee</th>
+                  <th>Salary</th>
+                  <th>Email</th>
+                  <th>Full Name</th>
+              </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let salary of salaryData; let i = index">
-              <td>{{ i + 1 }}</td> <!-- STT, lấy index + 1 -->
-              <td>{{ salary.DayReal }}</td>
-              <td>{{ salary.Fee }}</td>
-              <td>{{ salary.SalaryReal }}</td>
-              <td>{{ salary.Email }}</td>
-              <td>{{ salary.FullName }}</td> 
-            </tr>
+              <tr *ngFor="let salary of salaryData; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ salary.DayReal }}</td>
+                  <td>{{ salary.Fee }}</td>
+                  <td>{{ salary.SalaryReal }}</td>
+                  <td>{{ salary.Email }}</td>
+                  <td>{{ salary.FullName }}</td>
+              </tr>
           </tbody>
-        </table>
-      </div>
+      </table>
+  </div>
+</div>

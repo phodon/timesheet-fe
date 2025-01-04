@@ -1,99 +1,160 @@
-/* Đặt màu xanh nước biển làm màu chủ đạo */
-:root {
-    --main-color: #1E90FF; /* Màu xanh nước biển */
+/* Container chính */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Tiêu đề chính */
+h1.text-primary {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Phân biệt vùng chứa dropdown và nút với nền và viền */
+.filters-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 86vw; /* Chiều rộng toàn bộ màn hình */
+  height: 30vh; /* Chiều cao toàn bộ màn hình */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: auto; /* Cho phép thanh cuộn nếu nội dung quá lớn */
+  margin: 10px;
+  table-layout: fixed; /* Fixed table layout for equal column widths */
+}
+
+/* Căn chỉnh dropdown trên cùng 1 hàng */
+.row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Căn chỉnh nhãn và dropdown */
+.col-md-6 {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 200px;
+}
+
+.form-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px; /* Tăng khoảng cách giữa label và dropdown */
+}
+
+.form-select {
+  padding: 8px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-select:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Căn chỉnh nút Export và Send Email */
+.text-end {
+  display: flex;
+  justify-content: flex-start; /* Căn trái các nút */
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-success:hover, .btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Phân biệt vùng chứa bảng với nền và viền */
+.table-container {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+
+  width: 86vw; /* Chiều rộng toàn bộ màn hình */
+  height: 50vh; /* Chiều cao toàn bộ màn hình */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: auto; /* Cho phép thanh cuộn nếu nội dung quá lớn */
+  margin: 10px;
+  table-layout: fixed; /* Fixed table layout for equal column widths */
+}
+
+/* Bảng dữ liệu */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.table thead {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+}
+
+.table th, .table td {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e2e6ea;
+  cursor: pointer;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .row {
+      flex-direction: column;
+      gap: 10px;
   }
-  
-  /* Thiết kế bảng để full màn hình */
-  .table-responsive {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-  
-  table {
-    width: 100%; /* Đảm bảo bảng chiếm hết chiều rộng */
-    table-layout: fixed; /* Tự động phân chia đều các cột */
-  }
-  
-  th, td {
-    text-align: center;
-    padding: 15px;
-    font-size: 14px;
-    word-wrap: break-word;
-  }
-  
-  /* Tạo viền cho bảng đẹp hơn */
-  table.table-bordered {
-    border-collapse: collapse;
-  }
-  
-  table.table-bordered th,
-  table.table-bordered td {
-    border: 1px solid #ddd;
-  }
-  
-  /* Đổi màu header bảng */
-  thead.table-dark {
-    background-color: #1E90FF;
-    color: white;
-  }
-  
-  /* Thay đổi màu cho các phần tử form */
-  .form-label {
-    font-size: 16px;
-  }
-  
-  .form-select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  button.btn-success {
-    background-color: #1E90FF; /* Màu xanh nước biển cho nút */
-    border-color: #1E90FF;
-    color: white;
-    font-size: 16px;
-  }
-  
-  button.btn-success:hover {
-    background-color: #1c7ed6; /* Màu xanh đậm khi hover */
-    border-color: #1c7ed6;
-  }
-  
-  /* Chỉnh layout cho các dropdown và nút */
-  .row.mb-4 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .col-md-6 {
-    flex: 1 1 48%; /* Đảm bảo các cột đều chiếm không gian và không bị thu hẹp */
-  }
-  
-  /* Điều chỉnh khoảng cách và căn giữa tiêu đề */
-  h1.text-center {
-    margin-bottom: 30px;
-    font-size: 2rem;
-    color: #1E90FF;
-  }
-  
-  /* Cải thiện giao diện tổng thể */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
+
   .text-end {
-    text-align: right;
+    display: flex;
+    justify-content: flex-start; /* Căn trái các nút */
+    gap: 15px;
+    margin-top: 20px;
   }
-  
-  /* Responsive: Khi màn hình nhỏ, dropdown và nút sẽ xếp theo cột */
-  @media (max-width: 768px) {
-    .col-md-6 {
-      flex: 1 1 100%;
-    }
+
+  .btn {
+      width: 100%;
   }
-  
+}

@@ -5,12 +5,20 @@
       <h3>My Requests</h3>
       <div class="select-container">
         <label for="yearSelect">Year:</label>
-        <select id="yearSelect" [(ngModel)]="selectedYear" (change)="onYearOrMonthChange()">
+        <select
+          id="yearSelect"
+          [(ngModel)]="selectedYear"
+          (change)="onYearOrMonthChange()"
+        >
           <option *ngFor="let year of years" [value]="year">{{ year }}</option>
         </select>
 
         <label for="monthSelect">Month:</label>
-        <select id="monthSelect" [(ngModel)]="selectedMonth" (change)="onYearOrMonthChange()">
+        <select
+          id="monthSelect"
+          [(ngModel)]="selectedMonth"
+          (change)="onYearOrMonthChange()"
+        >
           <option *ngFor="let month of months" [value]="month.value">
             {{ month.name }}
           </option>
@@ -30,18 +38,30 @@
 
     <!-- Rows with the days of the month -->
     <div class="calendar-row" *ngFor="let week of calendarDays">
-      <div class="calendar-cell" *ngFor="let day of week" [class.other-month]="!day.isCurrentMonth"
-        (click)="handleClick(day.day)">
+      <div
+        class="calendar-cell"
+        *ngFor="let day of week"
+        [class.other-month]="!day.isCurrentMonth"
+        (click)="handleClick(day.day)"
+      >
+        <!-- Hiển thị nhãn OFF nếu là ngày cuối tuần -->
         <div *ngIf="isWeekend(day.day)" class="off-label">OFF</div>
+
+        <!-- Hiển thị trạng thái nếu có -->
         <div *ngIf="day.status" [ngClass]="day.status">
           {{ day.status | uppercase }}
         </div>
+
+        <!-- Hiển thị thông tin loại (type) của ngày -->
+        <div *ngIf="day.type !== 0" class="day-type">
+          {{ getTypeLabel(day.type) }}
+        </div>
+
+        <!-- Hiển thị ngày -->
         {{ extractDay(day.day) }}
       </div>
     </div>
   </div>
-
-
 
   <!-- Floating Form -->
   <div [class.active]="showForm" class="floating-form">
@@ -59,9 +79,14 @@
 
       <!-- Hours Input -->
       <label for="hoursInput">Hours:</label>
-      <input id="hoursInput" type="number" [(ngModel)]="selectedHours"
+      <input
+        id="hoursInput"
+        type="number"
+        [(ngModel)]="selectedHours"
         [disabled]="selectedStatus !== 'di-muon' && selectedStatus !== 've-som'"
-        [value]="getDefaultHours(selectedStatus)" (change)="validateHours()" />
+        [value]="getDefaultHours(selectedStatus)"
+        (change)="validateHours()"
+      />
       <div *ngIf="hoursError" class="error-message">
         Hours cannot exceed 2.00 for Đi muộn/Về sớm!
       </div>
@@ -75,9 +100,7 @@
     </div>
   </div>
 </div>
-  <!-- Send Request Button -->
-  <div class="send-request-container">
-    <button class="send-request-btn" (click)="sendRequest()">
-      Send Request
-    </button>
-  </div>
+<!-- Send Request Button -->
+<div class="send-request-container">
+  <button class="send-request-btn" (click)="sendRequest()">Send Request</button>
+</div>

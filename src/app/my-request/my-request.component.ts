@@ -13,13 +13,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/htt
 })
 export class MyRequestComponent {
   daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  calendarDays: { day: string, isCurrentMonth: boolean, status: string }[][] = [];
+  calendarDays: { day: string, isCurrentMonth: boolean, status: string, type: number }[][] = [];
   currentMonth!: number;
   currentYear!: number;
   selectedYear!: number;
   selectedMonth!: number;
   months = Array.from({ length: 12 }, (_, i) => ({ value: i, name: (i + 1).toString() }));
   years: number[] = [];
+  requestData: any[] = [];
   constructor(private http: HttpClient) {}
   reason: string = '';
 
@@ -37,6 +38,7 @@ export class MyRequestComponent {
     { value: "off-chieu", label: 'Off chiều', id: 4 },
     { value: "off-ca-ngay", label: 'Off cả ngày', id: 5 }
   ];
+
   isWeekend(day: string): boolean {
     const date = moment(day, 'YYYY-MM-DD');
     const dayOfWeek = date.day();
@@ -100,6 +102,8 @@ export class MyRequestComponent {
     this.selectedYear = this.currentYear;
     this.selectedMonth = this.currentMonth;
     this.generateYears();
+    this.updateCalendarDay();
+    this.callGetAllRequestByUser();
     this.generateCalendar();
   }
 
@@ -114,42 +118,69 @@ export class MyRequestComponent {
     const lastDayOfMonth = firstDayOfMonth.clone().endOf('month');
     const daysInMonth = lastDayOfMonth.date();
     const startDayOfWeek = firstDayOfMonth.day();
-
-    let days: { day: string, isCurrentMonth: boolean, status: string }[] = [];
+  
+    let days: { day: string, isCurrentMonth: boolean, status: string, type: number }[] = [];
     const lastDayOfPrevMonth = firstDayOfMonth.clone().subtract(1, 'months').endOf('month').date();
-
+  
+    // Thêm các ngày của tháng trước vào calendarDays
     for (let i = startDayOfWeek - 1; i >= 0; i--) {
       days.push({
         day: firstDayOfMonth.clone().subtract(1, 'months').date(lastDayOfPrevMonth - i).format('YYYY-MM-DD'),
         isCurrentMonth: false,
-        status: ''
+        status: '',
+        type: 0 // Gán giá trị mặc định cho type
       });
     }
-
+  
+    // Thêm các ngày của tháng hiện tại vào calendarDays
     for (let day = 1; day <= daysInMonth; day++) {
       days.push({
         day: firstDayOfMonth.clone().date(day).format('YYYY-MM-DD'),
         isCurrentMonth: true,
-        status: ''
+        status: '',
+        type: 0 // Gán giá trị mặc định cho type
       });
     }
-
+  
+    // Thêm các ngày của tháng sau vào calendarDays nếu cần
     let nextMonthDay = 1;
     while (days.length < 35) {
       days.push({
         day: firstDayOfMonth.clone().add(1, 'months').date(nextMonthDay++).format('YYYY-MM-DD'),
         isCurrentMonth: false,
-        status: ''
+        status: '',
+        type: 0 // Gán giá trị mặc định cho type
       });
     }
-
+  
+    // Cập nhật calendarDays với dữ liệu từ requestData
     this.calendarDays = [];
+    this.requestData.forEach(request => {
+      const requestDate = moment(request.Date).format('YYYY-MM-DD');
+      
+      // Duyệt qua từng ngày trong calendarDays
+      for (let i = 0; i < days.length; i++) {
+        console.log(days[i].day, requestDate);
+        if (days[i].day === requestDate) {
+          // Cập nhật status
+          days[i].status = request.Status;
+          
+          // Cập nhật type (kiểm tra TypeId và map đến options)
+          const typeOption = this.options.find(option => option.id === request.Type);
+          days[i].type = typeOption ? typeOption.id : 0; // Gán giá trị mặc định cho type nếu không tìm thấy
+        }
+      }
+    });
+  
+    // Chia nhỏ danh sách days thành các tuần
     for (let i = 0; i < days.length; i += 7) {
       this.calendarDays.push(days.slice(i, i + 7));
     }
   }
 
   onYearOrMonthChange(): void {
+    this.updateCalendarDay();
+    this.callGetAllRequestByUser();
     this.generateCalendar();
   }
 
@@ -165,6 +196,11 @@ export class MyRequestComponent {
       this.selectedHours = this.getDefaultHours(this.selectedStatus);
       this.hoursError = false;
     }
+  }
+
+  getTypeLabel(type: number): string {
+    const option = this.options.find(option => option.id === type);
+    return option ? option.label : 'Unknown';
   }
 
   closeForm(): void {
@@ -183,6 +219,8 @@ export class MyRequestComponent {
     this.hoursError = false;
     this.updateCalendarDay();
     this.closeForm();
+    this.callGetAllRequestByUser();
+    this.generateCalendar();
   }
 
   updateCalendarDay(): void {
@@ -206,5 +244,33 @@ export class MyRequestComponent {
     if (status === 'off-sang' || status === 'off-chieu') return 4;
     if (status === 'off-ca-ngay') return 8;
     return 0;
+  }
+
+  callGetAllRequestByUser(): void {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      console.log('No token found!');
+      return;
+    }
+
+    const payload = {
+        year: this.selectedYear,
+        month: Number(this.selectedMonth) + 1
+    };
+
+    const headers = new HttpHeaders({
+      'token': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    this.http.post('http://localhost:8080/api/request/getAllRequestByUser', payload, { headers }).subscribe(
+      (response: any) => {
+        this.requestData = response.data; 
+        console.log('Request data:', this.requestData);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching data:', error);
+      }
+    );
   }
 }

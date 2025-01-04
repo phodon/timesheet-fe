@@ -9,6 +9,7 @@ import { RoleComponent } from '../role/role.component';
 import { ProjectComponent } from '../project/project.component';
 import { RequestComponent } from '../request/request.component';
 import { SalaryComponent } from '../salary/salary.component';
+import { DailyComponent } from '../daily/daily.component';
 
 @Component({
   selector: 'app-main-content',
@@ -22,7 +23,8 @@ import { SalaryComponent } from '../salary/salary.component';
     RoleComponent,
     ProjectComponent,
     RequestComponent,
-    SalaryComponent
+    SalaryComponent,
+    DailyComponent
   ],
   templateUrl: './main-content.component.html',
   styleUrls: ['./main-content.component.css']

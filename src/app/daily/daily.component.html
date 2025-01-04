@@ -1,0 +1,66 @@
+<div class="filter-container">
+    <!-- Các dropdown như cũ -->
+    <label for="month">Tháng:</label>
+    <select id="month" [(ngModel)]="month" (change)="filterData()">
+        <option [value]="null">Tất cả</option>
+        <option *ngFor="let m of months" [value]="m">{{ m }}</option>
+    </select>
+
+    <label for="year">Năm:</label>
+    <select id="year" [(ngModel)]="year" (change)="filterData()">
+        <option [value]="null">Tất cả</option>
+        <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+    </select>
+
+    <label for="project">Dự Án:</label>
+    <select id="project" [(ngModel)]="selectedProject" (change)="filterData()">
+        <option [value]="null">Tất cả</option>
+        <option *ngFor="let project of uniqueProjects" [value]="project">{{ project }}</option>
+    </select>
+</div>
+
+<!-- Bảng hiển thị dữ liệu -->
+<table border="1">
+    <thead>
+        <tr>
+            <th class="stt">STT</th>
+            <th class="project-name">Tên Dự Án</th>
+            <th class="user-name">Tên Người Dùng</th>
+            <th class="report-content">Nội Dung Báo Cáo</th>
+            <th class="date">Ngày</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let daily of filteredRecords; let i = index" (click)="toggleDetail(daily)">
+            <td class="stt">{{ i + 1 }}</td>
+            <td class="project-name">{{ daily.ProjectName }}</td>
+            <td class="user-name">{{ daily.UserName }}</td>
+            <td class="report-content">{{ daily.Content.length > 100 ? (daily.Content | slice:0:100) + '...' : daily.Content }}</td>
+            <td class="date">{{ daily.Date | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+        <tr *ngIf="filteredRecords.length === 0">
+            <td colspan="5">Không có dữ liệu.</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- Hiển thị chi tiết nội dung khi nhấp vào dòng -->
+
+    <div *ngIf="selectedDaily" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chi tiết báo cáo</h3>
+                <button class="close-btn" (click)="selectedDaily = null">Đóng</button>
+            </div>
+    
+            <div class="modal-body">
+                <p><strong>Tên Dự Án:</strong> {{ selectedDaily.ProjectName }}</p>
+                <p><strong>Tên Người Dùng:</strong> {{ selectedDaily.UserName }}</p>
+                <p><strong>Ngày:</strong> {{ selectedDaily.Date | date: 'dd/MM/yyyy' }}</p>
+                <p><strong>Nội Dung Báo Cáo:</strong></p>
+                <p>{{ selectedDaily.Content }}</p>
+            </div>
+        </div>
+</div>
+
