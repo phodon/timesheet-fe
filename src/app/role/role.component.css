@@ -1,18 +1,231 @@
-.text-center{
+.text-center {
   margin-left: 200px;
 }
+
 .table {
-    border-collapse: collapse;
-    width: 140%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
-  }
-  
-  .table th, .table td {
-    padding: 12px; /* Thêm khoảng cách cho ô */
-    text-align: center; /* Căn giữa văn bản */
-    border: 1px solid #dee2e6; /* Đường viền cho ô */
-  }
-  
-  h2 {
-    color: #343a40; /* Màu sắc cho tiêu đề */
-    font-weight: bold; /* Làm đậm tiêu đề */
-  }
+  border-collapse: collapse;
+  width: 140%;
+  /* Đảm bảo bảng chiếm toàn bộ chiều rộng */
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  /* Thêm khoảng cách cho ô */
+  text-align: center;
+  /* Căn giữa văn bản */
+  border: 1px solid #dee2e6;
+  /* Đường viền cho ô */
+}
+
+h2 {
+  color: #343a40;
+  /* Màu sắc cho tiêu đề */
+  font-weight: bold;
+  /* Làm đậm tiêu đề */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  /* Màu nền tối */
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dialog {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 8px;
+  z-index: 1060;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.close {
+  font-size: 1.2rem;
+  color: #888;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.modal-body {
+  padding: 15px 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-body .form-group {
+  margin-bottom: 15px;
+}
+
+.modal-body label {
+  display: block;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="number"],
+.modal-body input[type="email"],
+.modal-body input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: border-color 0.2s;
+}
+
+.modal-body input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Nút "Add Member" */
+.btn-success {
+  background-color: #28a745;
+  /* Màu nền xanh lá */
+  color: white;
+  padding: 5px 10px;
+  /* Khoảng cách trong nút */
+  font-size: 0.875rem;
+  /* Cỡ chữ nhỏ */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  /* Màu nền khi hover */
+}
+
+/* Nút "Remove Member" */
+.btn-danger {
+  background-color: #dc3545;
+  /* Màu nền đỏ */
+  color: white;
+  padding: 5px 10px;
+  /* Khoảng cách trong nút */
+  font-size: 0.875rem;
+  /* Cỡ chữ nhỏ */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  /* Màu nền khi hover */
+}
+
+/* Cải thiện giao diện cho các nút bên trong table */
+td button {
+  margin-right: 10px;
+  /* Khoảng cách giữa hai nút */
+  display: inline-block;
+  /* Đảm bảo các nút nằm ngang */
+}
+
+td button:last-child {
+  margin-right: 0;
+  /* Xóa khoảng cách ở nút cuối cùng */
+}
+
+/* Định dạng chung cho input */
+.input-group .form-control {
+  border: 2px solid #007BFF;
+  /* Viền xanh */
+  border-radius: 5px 0 0 5px;
+  /* Bo góc trái */
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group .form-control:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Định dạng nút search */
+.input-group .btn {
+  border: 2px solid #007BFF;
+  border-radius: 0 5px 5px 0;
+  /* Bo góc phải */
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-group .btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
