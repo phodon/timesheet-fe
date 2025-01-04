@@ -18,7 +18,7 @@ export class SalaryComponent {
   selectedMonth!: number;
   salaryData: any[] = []; // Array to store salary data
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     const currentDate = new Date();
@@ -79,30 +79,41 @@ export class SalaryComponent {
     );
   }
 
-  sendEmail() {
-    for (const salary of this.salaryData) {
-      const templateParams = {
-        to_email: salary.Email,
-        to_name: salary.FullName,
-        day_real: salary.DayReal,
-        fee: salary.Fee,
-        salary_real: salary.SalaryReal,
-      };
-  
-      // Gửi email với Service ID và Template ID chính xác
-      emailjs
-        .send('service_f7mfran', 'template_lnqfsbq', templateParams, 'user_1234') // Kiểm tra Service ID và Template ID
-        .then(
-          (response) => {
-            console.log(`Email sent to ${salary.Email}:`, response.status, response.text);
-          },
-          (error) => {
-            console.error(`Failed to send email to ${salary.Email}:`, error);
-          }
-        );
+  async sendEmail(): Promise<void> {
+    if (!this.salaryData || this.salaryData.length === 0) {
+      alert('No salary data available. Please export salary data first.');
+      return;
     }
-  
-    alert('Emails sent successfully!');
+
+    for (const [index, salary] of this.salaryData.entries()) {
+      const templateParams = {
+        to_name: salary.FullName,
+        to_email: salary.Email,
+        day_real: salary.DayReal,
+        day_of_month: salary.DayOfMonth,
+        fee: salary.Fee,
+        salary: salary.Salary,
+        salary_real: salary.SalaryReal,
+        year: this.selectedYear, // Thêm năm
+        month: this.selectedMonth, // Thêm tháng
+      };
+
+      try {
+        // Đợi trước khi gửi email tiếp theo
+        await new Promise((resolve) => setTimeout(resolve, index * 1000)); // 1 email mỗi giây
+        const response = await emailjs.send(
+          'service_oq5sctc',
+          'template_7tipwyy',
+          templateParams,
+          'JbysJVxmzv9wnz4bs'
+        );
+        console.log(`Email sent to ${salary.Email}:`, response.status, response.text);
+      } catch (error) {
+        console.error(`Failed to send email to ${salary.Email}:`, error);
+      }
+    }
+
+    alert('Email sending process completed.');
   }
 
-}
+}  
