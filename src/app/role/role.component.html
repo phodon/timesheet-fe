@@ -1,3 +1,26 @@
+<div class="mb-4">
+  <button class="btn btn-primary mb-3" (click)="toggleRoleForm()">New Role</button>
+</div>
+
+<div *ngIf="showRoleForm" class="modal-overlay">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nhập thông tin vai trò mới</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Form Nhập dự án mới -->
+        <div class="mb-3">
+          <label>Tên vai trò:</label>
+          <input type="text" class="form-control" [(ngModel)]="newRole.RoleName" placeholder="Nhập tên vai trò">
+        </div>
+        <button class="btn btn-success" (click)="createRole()">Tạo vai trò</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-4">
   <h2 class="mb-4 text-center">Danh sách vai trò</h2>
   <table class="table table-striped">
@@ -8,10 +31,29 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let role of roles; let i = index">
+      <tr *ngFor="let role of roles; let i = index" (click)="viewRoleDetails(role.Id)">
         <td>{{ i + 1 }}</td>
         <td>{{ role.RoleName }}</td>
       </tr>
     </tbody>
   </table>
 </div>
+<div *ngIf="showDetailsModal && detailedRole" class="modal-overlay">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chi tiết vai trò</h5>
+        <button type="button" class="close" (click)="closeDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Tên Vai trò:</label>
+          <input type="text" [(ngModel)]="detailedRole.RoleName" class="form-control" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeDetailsModal()">Hủy</button>
+          <button type="button" class="btn btn-primary" (click)="updateRole()">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
