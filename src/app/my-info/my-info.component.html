@@ -34,10 +34,6 @@
       <input [(ngModel)]="userInfo.Indentify" />
     </div>
     <div class="form-group">
-      <label>Lương</label>
-      <input [(ngModel)]="userInfo.Salary" type="number" />
-    </div>
-    <div class="form-group">
       <label>Giới tính</label>
       <input [(ngModel)]="userInfo.Sex" />
     </div>
@@ -48,6 +44,10 @@
     <div class="form-group">
       <label>Trạng thái</label>
       <span>{{ userInfo.Status ? 'Hoạt động' : 'Ngừng hoạt động' }}</span>
+    </div>
+    <div class="form-group">
+      <label>Lương</label>
+      <span>{{userInfo.Salary}}</span>
     </div>
     <div class="form-group action-group">
       <button (click)="updateUser()" class="btn btn-primary">Lưu</button>
