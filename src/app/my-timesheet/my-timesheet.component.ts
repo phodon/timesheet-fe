@@ -166,15 +166,15 @@ export class MyTimesheetComponent {
       return;
     }
 
-    
-    const date = this.selectedDate.toISOString().split('T')[0];;
-    console.log(date)
+    const startDate = formatDate(getMonday(this.selectedDate));
+    const endDate = formatDate(getSunday(this.selectedDate));
     const headers = new HttpHeaders({
       'token': `Bearer ${accessToken}`,
       'Content-Type': 'application/json'
     });
 
-    const body = { date };
+    const body = { startDate, endDate };
+    console.log(startDate, endDate)
 
     this.http.post<any>('http://localhost:8080/api/daily/getDailyByUser', body, { headers })
       .subscribe(
