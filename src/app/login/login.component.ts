@@ -28,13 +28,18 @@ export class LoginComponent {
       const { username, password } = this.loginForm.value;
   
       // Gọi API đăng nhập
-      this.http.post<{ status: string, accessToken: string, refreshToken: string }>('http://localhost:8080/api/user/sign-in', { username, password })
+      this.http.post<{ status: string, message:string, accessToken: string, refreshToken: string }>('http://localhost:8080/api/user/sign-in', { username, password })
         .subscribe({
           next: (response) => {
             // Lưu accessToken vào localStorage nếu đăng nhập thành công
             localStorage.setItem('accessToken', response.accessToken); // Sửa lại thành accessToken
             // Điều hướng đến trang home
-            this.router.navigate(['/home']);
+            alert(response.message);
+            const token = localStorage.getItem('accessToken');
+            if (token != 'undefined'){
+              this.router.navigate(['/home']);
+            }
+            
           },
           error: (err) => {
             // Hiển thị thông báo lỗi nếu đăng nhập thất bại

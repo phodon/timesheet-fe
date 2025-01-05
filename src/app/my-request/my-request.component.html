@@ -1,106 +1,101 @@
-<div class="calendar">
-  <!-- Header -->
-  <div class="calendar-header">
-    <div class="header-container">
-      <h3>My Requests</h3>
-      <div class="select-container">
-        <label for="yearSelect">Year:</label>
-        <select
-          id="yearSelect"
-          [(ngModel)]="selectedYear"
-          (change)="onYearOrMonthChange()"
-        >
-          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-        </select>
+<div>
+  <label for="year">Year:</label>
+  <select id="year" (change)="onYearChange($event)">
+    <option
+      *ngFor="let year of [2023, 2024, 2025]"
+      [value]="year"
+      [selected]="year === currentYear"
+    >
+      {{ year }}
+    </option>
+  </select>
 
-        <label for="monthSelect">Month:</label>
-        <select
-          id="monthSelect"
-          [(ngModel)]="selectedMonth"
-          (change)="onYearOrMonthChange()"
-        >
-          <option *ngFor="let month of months" [value]="month.value">
-            {{ month.name }}
-          </option>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <!-- Calendar Body -->
-  <div class="calendar-body">
-    <!-- Header row with the days of the week -->
-    <div class="calendar-row calendar-header-row">
-      <div class="calendar-cell" *ngFor="let day of daysOfWeek">
-        {{ day }}
-      </div>
-    </div>
-
-    <!-- Rows with the days of the month -->
-    <div class="calendar-row" *ngFor="let week of calendarDays">
-      <div
-        class="calendar-cell"
-        *ngFor="let day of week"
-        [class.other-month]="!day.isCurrentMonth"
-        (click)="handleClick(day.day)"
-      >
-        <!-- Hiển thị nhãn OFF nếu là ngày cuối tuần -->
-        <div *ngIf="isWeekend(day.day)" class="off-label">OFF</div>
-
-        <!-- Hiển thị trạng thái nếu có -->
-        <div *ngIf="day.status" [ngClass]="day.status">
-          {{ day.status | uppercase }}
-        </div>
-
-        <!-- Hiển thị thông tin loại (type) của ngày -->
-        <div *ngIf="day.type !== 0" class="day-type">
-          {{ getTypeLabel(day.type) }}
-        </div>
-
-        <!-- Hiển thị ngày -->
-        {{ extractDay(day.day) }}
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Form -->
-  <div [class.active]="showForm" class="floating-form">
-    <div class="form-header">Request Details</div>
-    <div class="form-body">
-      <!-- Option Selector -->
-      <label for="statusSelect">Type Request</label>
-      <select id="statusSelect" [(ngModel)]="selectedStatus">
-        <option value="di-muon">Đi muộn</option>
-        <option value="ve-som">Về sớm</option>
-        <option value="off-sang">Off sáng</option>
-        <option value="off-chieu">Off chiều</option>
-        <option value="off-ca-ngay">Off cả ngày</option>
-      </select>
-
-      <!-- Hours Input -->
-      <label for="hoursInput">Hours:</label>
-      <input
-        id="hoursInput"
-        type="number"
-        [(ngModel)]="selectedHours"
-        [disabled]="selectedStatus !== 'di-muon' && selectedStatus !== 've-som'"
-        [value]="getDefaultHours(selectedStatus)"
-        (change)="validateHours()"
-      />
-      <div *ngIf="hoursError" class="error-message">
-        Hours cannot exceed 2.00 for Đi muộn/Về sớm!
-      </div>
-
-      <label for="reassonInput">Reasson: </label>
-      <input type="text" [(ngModel)]="reason" id="reassonInput" />
-    </div>
-    <div class="form-footer">
-      <button class="confirm-btn" (click)="confirmRequest()">Confirm</button>
-      <button class="cancel-btn" (click)="closeForm()">Cancel</button>
-    </div>
-  </div>
+  <label for="month">Month:</label>
+  <select id="month" (change)="onMonthChange($event)">
+    <option
+      *ngFor="let month of months"
+      [value]="month - 1"
+      [selected]="month - 1 === currentMonth"
+    >
+      {{ month }}
+    </option>
+  </select>
 </div>
-<!-- Send Request Button -->
-<div class="send-request-container">
-  <button class="send-request-btn" (click)="sendRequest()">Send Request</button>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th *ngFor="let day of weekdays">{{ day }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let week of daysInMonth">
+      <td
+        *ngFor="let day of week"
+        (click)="onDayClick(day)"
+        style="cursor: pointer"
+      >
+        <div *ngIf="day">
+          <strong>{{ day.date }}</strong>
+          <!-- Display the date -->
+          <div class="status-container">
+            <div
+              [ngClass]="{
+                'status-pending': day.status === 'pending',
+                'status-approved': day.status === 'approved'
+              }"
+            >
+              {{ day.status }}
+            </div>
+            <div
+              *ngIf="day.type"
+              [ngStyle]="{ 'background-color': getTypeColor(day.type) }"
+              class="type-label"
+            >
+              {{ day.type }}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!day">
+          <!-- Optional: Handle empty days -->
+          &nbsp;
+          <!-- Or replace with a placeholder -->
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div [class.active]="showForm" class="floating-form" *ngIf="showForm">
+  <div class="form-header">Request Details</div>
+  <div class="form-body">
+    <label for="statusSelect">Type Request</label>
+    <select id="statusSelect" [(ngModel)]="selectedStatus">
+      <option value="di-muon">Đi muộn</option>
+      <option value="ve-som">Về sớm</option>
+      <option value="off-sang">Off sáng</option>
+      <option value="off-chieu">Off chiều</option>
+      <option value="off-ca-ngay">Off cả ngày</option>
+    </select>
+
+    <label for="hoursInput">Hours:</label>
+    <input
+      id="hoursInput"
+      type="number"
+      [(ngModel)]="selectedHours"
+      [disabled]="selectedStatus !== 'di-muon' && selectedStatus !== 've-som'"
+      [value]="getDefaultHours(selectedStatus)"
+      (change)="validateHours()"
+    />
+    <div *ngIf="hoursError" class="error-message">
+      Hours cannot exceed 2.00 for Đi muộn/Về sớm!
+    </div>
+
+    <label for="reasonInput">Reason:</label>
+    <input type="text" [(ngModel)]="reason" id="reasonInput" />
+  </div>
+  <div class="form-footer">
+    <button class="confirm-btn" (click)="confirmRequest()">Confirm</button>
+    <button class="cancel-btn" (click)="closeForm()">Cancel</button>
+  </div>
 </div>
