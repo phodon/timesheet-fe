@@ -31,13 +31,10 @@
         <td>{{ request.Hours }}</td>
         <td>{{ request.Date }}</td>
         <td>
-          <button
-            [ngClass]="{
-              'btn-approvel': request.Status === 'Approvel',
+          <button [ngClass]="{
+              'btn-approvel': request.Status === 'Approved',
               'btn-pending': request.Status === 'Pending'
-            }"
-            (click)="onStatusClick(request)"
-          >
+            }" (click)="onStatusClick(request)">
             {{ request.Status }}
           </button>
         </td>

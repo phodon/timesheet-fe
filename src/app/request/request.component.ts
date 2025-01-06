@@ -15,7 +15,7 @@ export class RequestComponent implements OnInit {
   apiUrl: string = 'http://localhost:8080/api/request/getAllRequestByPM'; // URL API lấy danh sách request
   updateApiUrl: string = 'http://localhost:8080/api/request/approvelRequest'; // URL API cập nhật trạng thái
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.fetchRequests(); // Lấy danh sách request khi component được tải
@@ -69,7 +69,7 @@ export class RequestComponent implements OnInit {
     });
 
     // Xác định trạng thái mới
-    const newStatus = request.Status === 'Approvel' ? 'Pending' : 'Approvel';
+    const newStatus = request.Status === 'Approved' ? 'Pending' : 'Approved';
 
     this.http.put<any>(`${this.updateApiUrl}/${request.Id}`, { Status: newStatus }, { headers }).subscribe(
       (response) => {
