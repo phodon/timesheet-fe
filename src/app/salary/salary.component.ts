@@ -102,10 +102,10 @@ export class SalaryComponent {
         // Đợi trước khi gửi email tiếp theo
         await new Promise((resolve) => setTimeout(resolve, index * 1000)); // 1 email mỗi giây
         const response = await emailjs.send(
-          'service_oq5sctc',
-          'template_7tipwyy',
+          'service_ayh3ogh',
+          'template_f2o2nfk',
           templateParams,
-          'JbysJVxmzv9wnz4bs'
+          '-5HYIwoJvMOagDdGr'
         );
         console.log(`Email sent to ${salary.Email}:`, response.status, response.text);
       } catch (error) {
